@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dxedkx14evt8i"
-path="res://.godot/imported/_WallClimbNoMovement.png-806da93a9739111a1137b71a7d564bef.ctex"
+path="res://.godot/imported/_WallClimbNoMovement.png-8256a573ab48662865a28cdf8497bb91.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Colour1/Outline/120x80_PNGSheets/_WallClimbNoMovement.png"
-dest_files=["res://.godot/imported/_WallClimbNoMovement.png-806da93a9739111a1137b71a7d564bef.ctex"]
+source_file="res://Assets/Colour1/Outline/120x80_PNGSheets/_WallClimbNoMovement.png"
+dest_files=["res://.godot/imported/_WallClimbNoMovement.png-8256a573ab48662865a28cdf8497bb91.ctex"]
 
 [params]
 

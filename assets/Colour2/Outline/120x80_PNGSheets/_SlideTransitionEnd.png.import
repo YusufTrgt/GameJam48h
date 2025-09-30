@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b8ep3nlpydwgb"
-path="res://.godot/imported/_SlideTransitionEnd.png-7906641fbc4387f7d8ba3f7a57885b3f.ctex"
+path="res://.godot/imported/_SlideTransitionEnd.png-ddd6e1152c88e7288808d578060e88f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Colour2/Outline/120x80_PNGSheets/_SlideTransitionEnd.png"
-dest_files=["res://.godot/imported/_SlideTransitionEnd.png-7906641fbc4387f7d8ba3f7a57885b3f.ctex"]
+source_file="res://Assets/Colour2/Outline/120x80_PNGSheets/_SlideTransitionEnd.png"
+dest_files=["res://.godot/imported/_SlideTransitionEnd.png-ddd6e1152c88e7288808d578060e88f6.ctex"]
 
 [params]
 

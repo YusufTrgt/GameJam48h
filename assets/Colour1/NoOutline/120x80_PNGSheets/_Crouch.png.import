@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccym722tiolxk"
-path="res://.godot/imported/_Crouch.png-d2a746ff7910eb2b8dc4ebdc87331d97.ctex"
+path="res://.godot/imported/_Crouch.png-be077b740829117338505ff98cf8a5fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Colour1/NoOutline/120x80_PNGSheets/_Crouch.png"
-dest_files=["res://.godot/imported/_Crouch.png-d2a746ff7910eb2b8dc4ebdc87331d97.ctex"]
+source_file="res://Assets/Colour1/NoOutline/120x80_PNGSheets/_Crouch.png"
+dest_files=["res://.godot/imported/_Crouch.png-be077b740829117338505ff98cf8a5fa.ctex"]
 
 [params]
 

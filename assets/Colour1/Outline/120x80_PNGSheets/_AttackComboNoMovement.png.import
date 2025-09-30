@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dbajfvlh5ioq5"
-path="res://.godot/imported/_AttackComboNoMovement.png-12c507db1ea89a57414dd867ff768d38.ctex"
+path="res://.godot/imported/_AttackComboNoMovement.png-86b2bf837d8e24a00580e8d8b235a4df.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Colour1/Outline/120x80_PNGSheets/_AttackComboNoMovement.png"
-dest_files=["res://.godot/imported/_AttackComboNoMovement.png-12c507db1ea89a57414dd867ff768d38.ctex"]
+source_file="res://Assets/Colour1/Outline/120x80_PNGSheets/_AttackComboNoMovement.png"
+dest_files=["res://.godot/imported/_AttackComboNoMovement.png-86b2bf837d8e24a00580e8d8b235a4df.ctex"]
 
 [params]
 

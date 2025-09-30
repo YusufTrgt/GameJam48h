@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b0mbj7ywy0jtl"
-path="res://.godot/imported/_DeathNoMovement.png-d63223522d205c32b301edcf0c89cb62.ctex"
+path="res://.godot/imported/_DeathNoMovement.png-631b565986bd59733bbf3e29a592cf3d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Colour2/Outline/120x80_PNGSheets/_DeathNoMovement.png"
-dest_files=["res://.godot/imported/_DeathNoMovement.png-d63223522d205c32b301edcf0c89cb62.ctex"]
+source_file="res://Assets/Colour2/Outline/120x80_PNGSheets/_DeathNoMovement.png"
+dest_files=["res://.godot/imported/_DeathNoMovement.png-631b565986bd59733bbf3e29a592cf3d.ctex"]
 
 [params]
 

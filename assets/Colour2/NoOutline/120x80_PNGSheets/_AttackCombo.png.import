@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://2026hq0itm48"
-path="res://.godot/imported/_AttackCombo.png-aa050039b0dc92d708407963cde0f80a.ctex"
+path="res://.godot/imported/_AttackCombo.png-504bac155ad2106e7212d0353b825ad0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Colour2/NoOutline/120x80_PNGSheets/_AttackCombo.png"
-dest_files=["res://.godot/imported/_AttackCombo.png-aa050039b0dc92d708407963cde0f80a.ctex"]
+source_file="res://Assets/Colour2/NoOutline/120x80_PNGSheets/_AttackCombo.png"
+dest_files=["res://.godot/imported/_AttackCombo.png-504bac155ad2106e7212d0353b825ad0.ctex"]
 
 [params]
 

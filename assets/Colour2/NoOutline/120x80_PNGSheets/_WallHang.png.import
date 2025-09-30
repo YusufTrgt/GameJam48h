@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c7ndxrpjv6knv"
-path="res://.godot/imported/_WallHang.png-0bb77026f1b7dae0d57c1219440dbac9.ctex"
+path="res://.godot/imported/_WallHang.png-634a2998e615becb5d8894c78b32af9e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Colour2/NoOutline/120x80_PNGSheets/_WallHang.png"
-dest_files=["res://.godot/imported/_WallHang.png-0bb77026f1b7dae0d57c1219440dbac9.ctex"]
+source_file="res://Assets/Colour2/NoOutline/120x80_PNGSheets/_WallHang.png"
+dest_files=["res://.godot/imported/_WallHang.png-634a2998e615becb5d8894c78b32af9e.ctex"]
 
 [params]
 
