@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="GameJam 48Stunden"
+run/main_scene="uid://bmfpore2uxy0w"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -20,5 +21,6 @@ project/assembly_name="GameJam 48Stunden"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
