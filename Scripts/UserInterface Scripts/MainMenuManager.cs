@@ -25,6 +25,6 @@ public partial class MainMenuManager : Node
 	// oeffnet das erste level
 	private void OnStartButtonPressed()
 	{
-		GD.Print("spiel gestartet !!!");
+		GetTree().ChangeSceneToFile("res://Scenes/game.tscn");
 	}
 }

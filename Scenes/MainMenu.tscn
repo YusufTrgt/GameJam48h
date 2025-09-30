@@ -132,3 +132,6 @@ theme_override_fonts/font = ExtResource("3_ghw46")
 theme_override_font_sizes/font_size = 12
 text = "erstellt von : Nawied, Hakan, Yusuf, Eyoel und Milad"
 vertical_alignment = 1
+
+[connection signal="pressed" from="InteractableContainer/VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="InteractableContainer/VBoxContainer/QuitGameButton" to="." method="_on_quit_game_button_pressed"]
