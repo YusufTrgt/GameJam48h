@@ -1,3 +1,134 @@
-[gd_scene format=3 uid="uid://gmyigspeh7ma"]
+[gd_scene load_steps=12 format=3 uid="uid://gmyigspeh7ma"]
 
-[node name="MainMenu" type="Node2D"]
+[ext_resource type="Script" uid="uid://dhq2m2wol7y6k" path="res://Scripts/UserInterface Scripts/MainMenuManager.cs" id="1_ghw46"]
+[ext_resource type="FontFile" uid="uid://da8xbn27w3kp5" path="res://Fonts/Cinzel-VariableFont_wght.ttf" id="1_tt5f1"]
+[ext_resource type="FontFile" uid="uid://ckdb7k1yo05k" path="res://Fonts/CinzelDecorative-Bold.ttf" id="2_8saeu"]
+[ext_resource type="FontFile" uid="uid://cuqyp32a1lc4w" path="res://Fonts/CinzelDecorative-Regular.ttf" id="3_ghw46"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_853f1"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_df05h"]
+bg_color = Color(0.39688924, 0.39688927, 0.3968891, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghw46"]
+bg_color = Color(0.69965345, 0.6996535, 0.6996533, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+shadow_offset = Vector2(1, -2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ghw46"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tt5f1"]
+bg_color = Color(0.9852814, 0.9852814, 0.9852814, 1)
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8saeu"]
+bg_color = Color(0.8966985, 0.4367778, 0.40764803, 1)
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_df05h"]
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("quitButton", "startButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ghw46")
+quitButton = NodePath("InteractableContainer/VBoxContainer/QuitGameButton")
+startButton = NodePath("InteractableContainer/VBoxContainer/StartGameButton")
+
+[node name="InteractableContainer" type="Node" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InteractableContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -206.5
+offset_top = 60.5
+offset_right = 206.5
+offset_bottom = 154.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartGameButton" type="Button" parent="InteractableContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Rette die Welt !"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_tt5f1")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_853f1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_df05h")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ghw46")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ghw46")
+text = "Play"
+
+[node name="QuitGameButton" type="Button" parent="InteractableContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Schliesse das Spiel"
+theme_override_colors/font_color = Color(0.08855977, 0.08855999, 0.088559784, 1)
+theme_override_fonts/font = ExtResource("1_tt5f1")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_tt5f1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8saeu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_df05h")
+text = "Quit"
+
+[node name="NonInteractables" type="Node" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NonInteractables"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -511.5
+offset_top = -236.0
+offset_right = 511.5
+offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainGameTitle2" type="Label" parent="NonInteractables/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_8saeu")
+theme_override_font_sizes/font_size = 90
+text = "DAS GAME JAM GAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubTitle" type="Label" parent="NonInteractables/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("1_tt5f1")
+text = "Rette die Welt vor dem Boesen und werde der beste"
+
+[node name="credits" type="Label" parent="NonInteractables"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -39.0
+offset_right = 377.0
+offset_bottom = -16.0
+grow_vertical = 0
+tooltip_text = "wir sind die Entwickler dieses 2 Taegigen Projektes. Wir freuen uns ueber Feedback aller art wo auch immer es geht!
+"
+mouse_filter = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0.41568628)
+theme_override_fonts/font = ExtResource("3_ghw46")
+theme_override_font_sizes/font_size = 12
+text = "erstellt von : Nawied, Hakan, Yusuf, Eyoel und Milad"
+vertical_alignment = 1
