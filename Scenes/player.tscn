@@ -86,6 +86,9 @@ radius = 6.0
 height = 32.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(5, -20)
+collision_layer = 1
+collision_mask = 1
 script = ExtResource("1_cvnsp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

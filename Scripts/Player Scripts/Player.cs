@@ -3,38 +3,263 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-	public const float Speed = 150.0f;
-	public const float JumpVelocity = -250.0f;
+	// Movement Settings
+	[Export] public float Speed = 80.0f;
+	[Export] public float SprintSpeed = 180.0f;
+	[Export] public float JumpVelocity = -350.0f;
+	[Export] public float Acceleration = 1500.0f;
+	[Export] public float Friction = 1200.0f;
+	
+	// Health System
+	[Export] public float MaxHealth = 100.0f;
+	private float currentHealth;
+	
+	// Stamina System
+	[Export] public float MaxStamina = 100.0f;
+	[Export] public float StaminaDrainRate = 20.0f;
+	[Export] public float StaminaRegenRate = 8.0f;
+	[Export] public float MinStaminaToSprint = 5.0f;
+	[Export] public float JumpStaminaCost = 25.0f; // 4 Sprünge mit 100 Stamina
+	private float currentStamina;
+	private bool canSprint = true;
+	private bool sprintInputReleased = true; // Neu: Prüft ob Shift losgelassen wurde
+	
+	// Coyote Time
+	[Export] public float CoyoteTime = 0.15f;
+	private float coyoteTimer = 0.0f;
+	
+	// Jump Buffer
+	[Export] public float JumpBufferTime = 0.1f;
+	private float jumpBufferTimer = 0.0f;
+	
+	// Double Jump
+	[Export] public bool CanDoubleJump = true;
+	private bool hasDoubleJump = false;
+	
+	// Animations & Visuals
+	private AnimatedSprite2D sprite;
+	private bool facingRight = true;
+	
+	// Air Control
+	private float jumpDirection = 0; // Richtung beim Absprung
+	private bool wasSprintingOnJump = false; // War Sprint beim Absprung aktiv?
+
+	public override void _Ready()
+	{
+		sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		currentStamina = MaxStamina;
+		currentHealth = MaxHealth;
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
+		float deltaF = (float)delta;
 
-		// Add the gravity.
+		// Gravity
 		if (!IsOnFloor())
 		{
-			velocity += GetGravity() * (float)delta;
-		}
-
-		// Handle Jump.
-		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
-		{
-			velocity.Y = JumpVelocity;
-		}
-
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
-		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-		if (direction != Vector2.Zero)
-		{
-			velocity.X = direction.X * Speed;
+			velocity += GetGravity() * deltaF;
+			coyoteTimer -= deltaF;
 		}
 		else
 		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+			coyoteTimer = CoyoteTime;
+			hasDoubleJump = true;
 		}
+
+		// Jump Buffer Timer
+		if (jumpBufferTimer > 0)
+		{
+			jumpBufferTimer -= deltaF;
+		}
+
+		// Jump Input Detection
+		if (Input.IsActionJustPressed("jump"))
+		{
+			jumpBufferTimer = JumpBufferTime;
+		}
+
+		// Jump Logic (mit Coyote Time & Buffer & Stamina)
+		if (jumpBufferTimer > 0)
+		{
+			if (coyoteTimer > 0 && currentStamina >= JumpStaminaCost)
+			{
+				velocity.Y = JumpVelocity;
+				currentStamina -= JumpStaminaCost;
+				jumpBufferTimer = 0;
+				coyoteTimer = 0;
+			}
+			else if (CanDoubleJump && hasDoubleJump && !IsOnFloor() && currentStamina >= JumpStaminaCost)
+			{
+				// Double Jump kostet gleich viel und ist gleich hoch
+				velocity.Y = JumpVelocity;
+				currentStamina -= JumpStaminaCost;
+				hasDoubleJump = false;
+				jumpBufferTimer = 0;
+			}
+		}
+
+		// Variable Jump Height
+		if (Input.IsActionJustReleased("jump") && velocity.Y < 0)
+		{
+			velocity.Y *= 0.5f;
+		}
+
+		// Horizontal Movement mit WASD
+		float inputAxis = 0;
+		
+		if (Input.IsActionPressed("move_right"))
+			inputAxis += 1;
+		if (Input.IsActionPressed("move_left"))
+			inputAxis -= 1;
+
+		// Sprint mit Shift & Stamina System
+		float currentSpeed = Speed;
+		bool isSprinting = false;
+		
+		// Check ob Shift losgelassen wurde
+		if (!Input.IsActionPressed("sprint"))
+		{
+			sprintInputReleased = true;
+		}
+		
+		// Nur sprinten wenn: Shift gedrückt + genug Stamina + wurde vorher losgelassen + sich bewegt
+		if (Input.IsActionPressed("sprint") && canSprint && sprintInputReleased && inputAxis != 0)
+		{
+			// In der Luft: Nur sprinten wenn bereits beim Absprung gesprintet wurde
+			if (!IsOnFloor() && !wasSprintingOnJump)
+			{
+				// Sprint nicht erlaubt in der Luft
+				isSprinting = false;
+			}
+			else
+			{
+				currentSpeed = SprintSpeed;
+				isSprinting = true;
+				currentStamina -= StaminaDrainRate * deltaF;
+				
+				if (currentStamina <= 0)
+				{
+					currentStamina = 0;
+					canSprint = false;
+					sprintInputReleased = false; // Muss Shift neu drücken
+				}
+			}
+		}
+		else
+		{
+			// Stamina Regeneration
+			currentStamina += StaminaRegenRate * deltaF;
+			if (currentStamina > MaxStamina)
+				currentStamina = MaxStamina;
+			
+			if (currentStamina >= MinStaminaToSprint)
+				canSprint = true;
+		}
+
+		// Bewegung: Nur auf dem Boden volle Kontrolle
+		if (IsOnFloor())
+		{
+			// Auf dem Boden: Normale Bewegung
+			if (inputAxis != 0)
+			{
+				velocity.X = Mathf.MoveToward(velocity.X, inputAxis * currentSpeed, Acceleration * deltaF);
+				jumpDirection = inputAxis; // Speichere Richtung für Sprung
+				wasSprintingOnJump = isSprinting; // Speichere Sprint-Status
+				
+				// Flip Sprite
+				if (inputAxis > 0 && !facingRight)
+				{
+					facingRight = true;
+					sprite.FlipH = false;
+				}
+				else if (inputAxis < 0 && facingRight)
+				{
+					facingRight = false;
+					sprite.FlipH = true;
+				}
+			}
+			else
+			{
+				velocity.X = Mathf.MoveToward(velocity.X, 0, Friction * deltaF);
+				jumpDirection = 0; // Keine Richtung wenn stillstehend
+				wasSprintingOnJump = false;
+			}
+		}
+		else
+		{
+			// In der Luft: Behalte die Sprung-Richtung bei (kein Air Control)
+			velocity.X = jumpDirection * currentSpeed;
+		}
+
+		UpdateAnimation(velocity);
 
 		Velocity = velocity;
 		MoveAndSlide();
+	}
+
+	private void UpdateAnimation(Vector2 velocity)
+	{
+		if (IsOnFloor())
+		{
+			if (Mathf.Abs(velocity.X) > 10)
+			{
+				sprite.Play("idle");
+			}
+			else
+			{
+				sprite.Play("idle");
+			}
+		}
+		else
+		{
+			sprite.Play("idle");
+		}
+	}
+	
+	// ===== PUBLIC METHODS FÜR UI =====
+	
+	public float GetStaminaPercent()
+	{
+		return currentStamina / MaxStamina;
+	}
+	
+	public float GetCurrentStamina()
+	{
+		return currentStamina;
+	}
+	
+	public float GetHealthPercent()
+	{
+		return currentHealth / MaxHealth;
+	}
+	
+	public float GetCurrentHealth()
+	{
+		return currentHealth;
+	}
+	
+	public void TakeDamage(float damage)
+	{
+		currentHealth -= damage;
+		if (currentHealth <= 0)
+		{
+			currentHealth = 0;
+			Die();
+		}
+	}
+	
+	public void Heal(float amount)
+	{
+		currentHealth += amount;
+		if (currentHealth > MaxHealth)
+			currentHealth = MaxHealth;
+	}
+	
+	private void Die()
+	{
+		GD.Print("Player ist gestorben!");
+		// TODO: Game Over Screen, Respawn, etc.
 	}
 }

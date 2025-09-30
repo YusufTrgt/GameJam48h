@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddbpsknfevufc"]
+[gd_scene load_steps=5 format=3 uid="uid://ddbpsknfevufc"]
 
 [ext_resource type="PackedScene" uid="uid://phvg4nuchhnw" path="res://Scenes/player.tscn" id="1_ebmjs"]
 [ext_resource type="PackedScene" uid="uid://p6p4ksofqsum" path="res://Scenes/muenze.tscn" id="2_qxrlw"]
+[ext_resource type="Script" path="res://Scripts/UserInterface Scripts/PlayerUI.cs" id="3_ui"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ebmjs"]
 
@@ -22,3 +23,33 @@ shape = SubResource("WorldBoundaryShape2D_ebmjs")
 
 [node name="Node2D" parent="." instance=ExtResource("2_qxrlw")]
 position = Vector2(115, 26)
+
+[node name="PlayerUI" type="CanvasLayer" parent="."]
+script = ExtResource("3_ui")
+
+[node name="HeartsContainer" type="HBoxContainer" parent="PlayerUI"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 50.0
+theme_override_constants/separation = 8
+
+[node name="StaminaBarBackground" type="ProgressBar" parent="PlayerUI"]
+offset_left = 20.0
+offset_top = 60.0
+offset_right = 215.0
+offset_bottom = 75.0
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="StaminaBar" type="ProgressBar" parent="PlayerUI/StaminaBarBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 100.0
+value = 100.0
+show_percentage = false
