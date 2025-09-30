@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://ddbpsknfevufc"]
+[gd_scene load_steps=4 format=3 uid="uid://ddbpsknfevufc"]
 
 [ext_resource type="PackedScene" uid="uid://phvg4nuchhnw" path="res://Scenes/player.tscn" id="1_ebmjs"]
+[ext_resource type="PackedScene" uid="uid://p6p4ksofqsum" path="res://Scenes/muenze.tscn" id="2_qxrlw"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ebmjs"]
 
@@ -18,3 +19,6 @@ zoom = Vector2(4, 4)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(65, 80)
 shape = SubResource("WorldBoundaryShape2D_ebmjs")
+
+[node name="Node2D" parent="." instance=ExtResource("2_qxrlw")]
+position = Vector2(115, 26)
