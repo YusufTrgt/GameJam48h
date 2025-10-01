@@ -5,7 +5,7 @@ public partial class Player : CharacterBody2D
 {
 	// Movement Settings
 	[Export] public float Speed = 80.0f;
-	[Export] public float SprintSpeed = 140.0f;
+	[Export] public float SprintSpeed = 111.0f;
 	[Export] public float JumpVelocity = -250.0f;
 	[Export] public float Acceleration = 1500.0f;
 	[Export] public float Friction = 1200.0f;
@@ -18,7 +18,7 @@ public partial class Player : CharacterBody2D
 	// Stamina System
 	[Export] public float MaxStamina = 100.0f;
 	[Export] public float StaminaDrainRate = 20.0f;
-	[Export] public float StaminaRegenRate = 14.0f;
+	[Export] public float StaminaRegenRate = 18.0f;
 	[Export] public float MinStaminaToSprint = 5.0f;
 	[Export] public float JumpStaminaCost = 25.0f;
 	[Export] public float MinJumpStaminaCost = 10.0f;
