@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bi0pv3xmp07hu"]
+
+[ext_resource type="SpriteFrames" path="res://Assets/UI/heart_animations.tres" id="1_452e1"]
+
+[node name="Heart" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_452e1")
+animation = &"empty"
