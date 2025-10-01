@@ -15,11 +15,12 @@ using System;
 public partial class FollowCameraComponent : Camera2D
 {
 	[Export] private CharacterBody2D player;
-	[Export] private float horizontalOffset = 100f;
+	[Export] private float horizontalOffset = 50.0f;
 	[Export] private float deadzoneHeight = 50f;
-	[Export] private float deadzoneWidth = 70f;
-	[Export] private float smoothing = 0.1f;
+	[Export] private float deadzoneWidth = 15.0f;
+	[Export] private float smoothing = 4.0f;
 	
+	private float currentSmoothingValue;
 	private bool HasExitedXDeadzone = false;
 	private float CurrentXOffset = 0f;
 	private float SelectedXVelocity;
@@ -27,6 +28,7 @@ public partial class FollowCameraComponent : Camera2D
 
 	public override void _Ready()
 	{
+		currentSmoothingValue = smoothing;
 		CalculatePlayerOffsetAndFollow(0.0f, false);
 	}
 
@@ -61,7 +63,7 @@ public partial class FollowCameraComponent : Camera2D
 
 		// Wenn FollowingPlayer aktiv -> leicht nachziehen
 		if (FollowingPlayer)
-			CamPos.Y = Mathf.Lerp(CamPos.Y, PlayerPos.Y + deadzoneHeight, smoothing * DeltaSeconds);
+			CamPos.Y = Mathf.Lerp(CamPos.Y, PlayerPos.Y + deadzoneHeight, currentSmoothingValue * DeltaSeconds);
 		
 		 // --- Horizontale Deadzone mit Offset ---
 		float RightDeadzone = CamPos.X + deadzoneWidth;
@@ -70,11 +72,15 @@ public partial class FollowCameraComponent : Camera2D
 		float PlayerVelX = GetPlayerVelocityX();
 		if (Mathf.Abs(PlayerVelX) <= 0.03)
 		{
+			// player bewegt sich nicht mehr
+			currentSmoothingValue = 0.3f;
 			HasExitedXDeadzone = false;
 			CurrentXOffset = 0.0f;
 		}
-
-		GD.Print("player x vel : ", PlayerVelX, " applied x vel : ", SelectedXVelocity);
+		else
+		{
+			currentSmoothingValue = smoothing;
+		}
 
 		if (!HasExitedXDeadzone || !GMath.SameSign(PlayerVelX, SelectedXVelocity))
 		{
@@ -90,17 +96,11 @@ public partial class FollowCameraComponent : Camera2D
 				SelectedXVelocity = -1.0f;
 				HasExitedXDeadzone = true;
 			}
-			//else
-			//{
-				//// Spieler in Deadzone → Offset nur zurücksetzen, wenn er stillsteht
-				//if (Mathf.Abs(PlayerVelX) < 0.01f)
-					//CurrentXOffset = 0f;
-			//}
 		}
 		
 
 		// Kamera X folgt dem Spieler mit Offset
-		CamPos.X = Mathf.Lerp(CamPos.X, PlayerPos.X + CurrentXOffset, smoothing * DeltaSeconds);
+		CamPos.X = Mathf.Lerp(CamPos.X, PlayerPos.X + CurrentXOffset, currentSmoothingValue * DeltaSeconds);
 		
 		GlobalPosition = new Vector2(CamPos.X, CamPos.Y);
 		
