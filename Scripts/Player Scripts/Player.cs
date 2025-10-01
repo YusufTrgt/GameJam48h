@@ -208,7 +208,7 @@ public partial class Player : CharacterBody2D
 	}
 
 	private void UpdateAnimation(Vector2 velocity) {
-	// In der Luft: (optional) jump/fall unterscheiden
+		// In der Luft: (optional) jump/fall unterscheiden
 		if (!IsOnFloor()) {
 			if (velocity.Y < -5f)
 				PlayAnim("jump");
@@ -219,8 +219,7 @@ public partial class Player : CharacterBody2D
 		// Am Boden: run vs idle
 		float xSpeed = Mathf.Abs(velocity.X);
 		if (xSpeed > RunAnimThreshold){
-			// Animationsgeschwindigkeit leicht an reales Tempo koppeln
-			// t ~ 0 bei Speed, ~1 bei SprintSpeed (geclamped)
+			// t 0 bei Speed, 1 bei SprintSpeed
 			float baseSpeed = Mathf.Max(1f, Speed); // Schutz gegen 0
 			float t = Mathf.InverseLerp(baseSpeed, SprintSpeed, xSpeed);
 			float animSpeed = Mathf.Lerp(RunSpeedScaleMin, RunSpeedScaleMax, Mathf.Clamp(t, 0f, 1f));
@@ -233,7 +232,6 @@ public partial class Player : CharacterBody2D
 	}
 
 	
-	// Public Methods für UI
 	public float GetStaminaPercent()
 	{
 		return currentStamina / MaxStamina;
