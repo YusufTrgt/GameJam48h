@@ -26,9 +26,9 @@ public partial class PlayerUI : CanvasLayer
 	public override void _Ready()
 	{
 		// Hole UI Elemente
-		staminaBar = GetNode<ProgressBar>("StaminaBarBackground/StaminaBar");
-		heartsContainer = GetNode<HBoxContainer>("HeartsContainer");
-		coinCounterLabel = GetNode<Label>("CoinContainer/CoinCount");
+		staminaBar = GetNode<ProgressBar>("PlayerStatsVBox/StaminaBarBackground/StaminaBar");
+		heartsContainer = GetNode<HBoxContainer>("PlayerStatsVBox/HeartsContainer");
+		coinCounterLabel = GetNode<Label>("PlayerStatsVBox/Coin_ScoreContainer/HeightAdjustment__ScoreToCoinAmount/CoinContainer/CoinCount");
 		
 		// Setup Coin Sprite
 		SetupCoinSprite();
@@ -74,7 +74,7 @@ public partial class PlayerUI : CanvasLayer
 		bgStyle.CornerRadiusBottomLeft = 4;
 		bgStyle.CornerRadiusBottomRight = 4;
 		
-		var staminaBg = GetNode<ProgressBar>("StaminaBarBackground");
+		var staminaBg = GetNode<ProgressBar>("PlayerStatsVBox/StaminaBarBackground");
 		staminaBg.AddThemeStyleboxOverride("fill", bgStyle);
 	}
 	
@@ -129,7 +129,7 @@ public partial class PlayerUI : CanvasLayer
 	
 	private void SetupCoinSprite()
 	{
-		var coinSprite = GetNode<AnimatedSprite2D>("CoinContainer/CoinSprite");
+		var coinSprite = GetNode<AnimatedSprite2D>("PlayerStatsVBox/Coin_ScoreContainer/HeightAdjustment__ScoreToCoinAmount/CoinContainer/CoinSprite");
 		
 		// Lade das Coin SpriteFrames (gleiche wie im Spiel)
 		var spriteFrames = GD.Load<SpriteFrames>("res://Scenes/muenze.tscn::SpriteFrames_sjilf");
@@ -146,7 +146,7 @@ public partial class PlayerUI : CanvasLayer
 			var coinLabel = new Label();
 			coinLabel.Text = "🪙";
 			coinLabel.AddThemeFontSizeOverride("font_size", 20);
-			var container = GetNode<HBoxContainer>("CoinContainer");
+			var container = GetNode<HBoxContainer>("PlayerStatsVBox/Coin_ScoreContainer/HeightAdjustment__ScoreToCoinAmount/CoinContainer");
 			container.AddChild(coinLabel);
 			container.MoveChild(coinLabel, 0); // Vor den Counter
 		}

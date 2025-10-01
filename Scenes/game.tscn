@@ -1,25 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddbpsknfevufc"]
+[gd_scene load_steps=9 format=3 uid="uid://ddbpsknfevufc"]
 
 [ext_resource type="PackedScene" uid="uid://phvg4nuchhnw" path="res://Scenes/player.tscn" id="1_ebmjs"]
+[ext_resource type="Texture2D" uid="uid://4iibk20704fk" path="res://Prototyping/maxresdefault.jpg" id="1_wowpa"]
 [ext_resource type="PackedScene" uid="uid://p6p4ksofqsum" path="res://Scenes/muenze.tscn" id="2_qxrlw"]
-[ext_resource type="Script" path="res://Scripts/UserInterface Scripts/PlayerUI.cs" id="3_ui"]
+[ext_resource type="Texture2D" uid="uid://ofo5hor7124r" path="res://icon.svg" id="3_i6g32"]
+[ext_resource type="Script" uid="uid://ba8mjqayycu8j" path="res://Scripts/UserInterface Scripts/PlayerUI.cs" id="3_ui"]
+[ext_resource type="Script" uid="uid://d32jf4pffhqm0" path="res://Scripts/ComponentScripts/FollowCameraComponent.cs" id="4_3dryh"]
+[ext_resource type="FontFile" uid="uid://cuqyp32a1lc4w" path="res://Fonts/CinzelDecorative-Regular.ttf" id="6_1l0tm"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ebmjs"]
 
 [node name="Game" type="Node2D"]
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_ebmjs")]
-position = Vector2(70, 28)
+[node name="placeholder__background" type="Sprite2D" parent="."]
+modulate = Color(0.18120003, 0.18120006, 0.18120003, 1)
+position = Vector2(-63, 36)
+texture = ExtResource("1_wowpa")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(65, 30)
-zoom = Vector2(4, 4)
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_ebmjs")]
+position = Vector2(-1, 28)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(65, 80)
+position = Vector2(65, 84)
 shape = SubResource("WorldBoundaryShape2D_ebmjs")
+debug_color = Color(11.919689, 8.820813, 15.581995, 0.41960785)
+
+[node name="Icon" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(51, 98)
+scale = Vector2(4.3199997, 0.24000001)
+texture = ExtResource("3_i6g32")
 
 [node name="Node2D" parent="." instance=ExtResource("2_qxrlw")]
 position = Vector2(115, 26)
@@ -27,49 +38,79 @@ position = Vector2(115, 26)
 [node name="PlayerUI" type="CanvasLayer" parent="."]
 script = ExtResource("3_ui")
 
-[node name="HeartsContainer" type="HBoxContainer" parent="PlayerUI"]
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 200.0
-offset_bottom = 50.0
+[node name="PlayerStatsVBox" type="VBoxContainer" parent="PlayerUI"]
+offset_left = 22.0
+offset_top = 16.0
+offset_right = 217.0
+offset_bottom = 56.0
+
+[node name="HeartsContainer" type="HBoxContainer" parent="PlayerUI/PlayerStatsVBox"]
+layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="StaminaBarBackground" type="ProgressBar" parent="PlayerUI"]
-offset_left = 20.0
-offset_top = 60.0
-offset_right = 215.0
-offset_bottom = 75.0
-max_value = 100.0
+[node name="StaminaBarBackground" type="ProgressBar" parent="PlayerUI/PlayerStatsVBox"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
 value = 100.0
 show_percentage = false
 
-[node name="StaminaBar" type="ProgressBar" parent="PlayerUI/StaminaBarBackground"]
+[node name="StaminaBar" type="ProgressBar" parent="PlayerUI/PlayerStatsVBox/StaminaBarBackground"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-max_value = 100.0
 value = 100.0
 show_percentage = false
 
-[node name="CoinContainer" type="Control" parent="PlayerUI"]
-offset_left = 20.0
-offset_top = 85.0
-offset_right = 150.0
-offset_bottom = 115.0
+[node name="Control2" type="Control" parent="PlayerUI/PlayerStatsVBox"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
 
-[node name="CoinSprite" type="AnimatedSprite2D" parent="PlayerUI/CoinContainer"]
+[node name="Coin_ScoreContainer" type="HBoxContainer" parent="PlayerUI/PlayerStatsVBox"]
+layout_mode = 2
+
+[node name="Score" type="Label" parent="PlayerUI/PlayerStatsVBox/Coin_ScoreContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_1l0tm")
+text = "696969"
+
+[node name="Control3" type="Control" parent="PlayerUI/PlayerStatsVBox/Coin_ScoreContainer"]
+custom_minimum_size = Vector2(15, 2)
+layout_mode = 2
+
+[node name="HeightAdjustment__ScoreToCoinAmount" type="VBoxContainer" parent="PlayerUI/PlayerStatsVBox/Coin_ScoreContainer"]
+layout_mode = 2
+
+[node name="CoinContainer" type="Control" parent="PlayerUI/PlayerStatsVBox/Coin_ScoreContainer/HeightAdjustment__ScoreToCoinAmount"]
+layout_mode = 2
+
+[node name="CoinSprite" type="AnimatedSprite2D" parent="PlayerUI/PlayerStatsVBox/Coin_ScoreContainer/HeightAdjustment__ScoreToCoinAmount/CoinContainer"]
 position = Vector2(16, 15)
 scale = Vector2(2, 2)
 
-[node name="CoinCount" type="Label" parent="PlayerUI/CoinContainer"]
+[node name="CoinCount" type="Label" parent="PlayerUI/PlayerStatsVBox/Coin_ScoreContainer/HeightAdjustment__ScoreToCoinAmount/CoinContainer"]
+layout_mode = 0
 offset_left = 40.0
-offset_top = 0.0
 offset_right = 100.0
 offset_bottom = 30.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_1l0tm")
 theme_override_font_sizes/font_size = 18
 text = "x0"
 vertical_alignment = 1
+
+[node name="Control4" type="Control" parent="PlayerUI/PlayerStatsVBox/Coin_ScoreContainer/HeightAdjustment__ScoreToCoinAmount"]
+custom_minimum_size = Vector2(20, 25)
+layout_mode = 2
+
+[node name="FollowCameraComponent" type="Camera2D" parent="." node_paths=PackedStringArray("Player")]
+position = Vector2(65, 30)
+zoom = Vector2(3, 3)
+script = ExtResource("4_3dryh")
+Player = NodePath("../CharacterBody2D")
+DeadzoneY = 60.0
+LookAhead = Vector2(80, 0)
+SmoothSpeed = 1.0
+metadata/_custom_type_script = "uid://d32jf4pffhqm0"
