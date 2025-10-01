@@ -105,12 +105,12 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(20, 25)
 layout_mode = 2
 
-[node name="FollowCameraComponent" type="Camera2D" parent="." node_paths=PackedStringArray("Player")]
+[node name="FollowCameraComponent" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 position = Vector2(65, 30)
 zoom = Vector2(3, 3)
 script = ExtResource("4_3dryh")
-Player = NodePath("../CharacterBody2D")
-DeadzoneY = 60.0
-LookAhead = Vector2(80, 0)
-SmoothSpeed = 1.0
+player = NodePath("../CharacterBody2D")
+horizontalOffset = 80.0
+deadzoneWidth = 25.0
+smoothing = 4.0
 metadata/_custom_type_script = "uid://d32jf4pffhqm0"

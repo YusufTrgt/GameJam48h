@@ -3,7 +3,7 @@ using Godot;
 
 public static class GMath
 {
-	// Interpolations Methode [sauber bewegung zwischen 2 punkten]
+	// Interpolations Methode [saubere bewegung zwischen 2 punkten]
 	public static float FInterpTo(float A, float B, float DeltaSeconds, 
 	float InterpolationSpeed = 6)
 	{
@@ -20,6 +20,7 @@ public static class GMath
 			return A + diff * delta;
 	}
 	
+	// Interpolations Methode [saubere bewegung zwischen 2 2d Punkten]
 	public static Vector2 VInterpTo(Vector2 A, Vector2 B, float DeltaSeconds,
 	float InterpolationSpeed = 6)
 	{
@@ -29,5 +30,25 @@ public static class GMath
 		);
 	}
 	
+	// nimmt den wert und sieht die range. mapped es dann in die erwartete range runter
+	public static float MapRangeClamped(float value, float inMin, float inMax, float outMin, float outMax)
+	{
+		if (inMax - inMin == 0f) // Division durch null verhindern
+			return outMin;
+
+		// Linear map
+		float t = (value - inMin) / (inMax - inMin);
+
+		// Clamp auf 0-1
+		t = Mathf.Clamp(t, 0f, 1f);
+
+		// Auf Ausgabebereich anwenden
+		return outMin + t * (outMax - outMin);
+	}
 	
+	// prueft ob zwei zahlen dieselben vorzeichen haben
+	public static bool SameSign(float A, float B)
+	{
+		return (A * B) >= 0;
+	}
 }
