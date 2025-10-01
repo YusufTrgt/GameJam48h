@@ -1377,7 +1377,7 @@ scale = Vector2(0.25000003, 0.2109375)
 texture = ExtResource("1_bg")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_ebmjs")]
-position = Vector2(1346, 68)
+position = Vector2(-20, 98)
 scale = Vector2(0.5, 0.5)
 
 [node name="PlayerUI" type="CanvasLayer" parent="."]
@@ -1523,7 +1523,7 @@ texture = ExtResource("7_1l0tm")
 [node name="Background2" type="Sprite2D" parent="Background2/Background2/Background2/Background2/Background2/Background2/Background2"]
 top_level = true
 z_index = -100
-position = Vector2(1255.0001, 262)
+position = Vector2(1247.0001, 261)
 scale = Vector2(0.24967435, 0.21034244)
 texture = ExtResource("7_1l0tm")
 
@@ -1553,7 +1553,7 @@ texture = ExtResource("1_bg")
 
 [node name="InfiniteBackground6" type="Sprite2D" parent="."]
 z_index = -100
-position = Vector2(1324, 48.000004)
+position = Vector2(1318.0001, 49.000004)
 scale = Vector2(0.15625001, 0.2109375)
 texture = ExtResource("1_bg")
 
