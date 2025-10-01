@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://da8xbn27w3kp5" path="res://Fonts/Cinzel-VariableFont_wght.ttf" id="1_tt5f1"]
 [ext_resource type="FontFile" uid="uid://ckdb7k1yo05k" path="res://Fonts/CinzelDecorative-Bold.ttf" id="2_8saeu"]
 [ext_resource type="FontFile" uid="uid://cuqyp32a1lc4w" path="res://Fonts/CinzelDecorative-Regular.ttf" id="3_ghw46"]
+[ext_resource type="Texture2D" path="res://Assets/UI/menu_background.png" id="4_bg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_853f1"]
 bg_color = Color(1, 1, 1, 1)
@@ -44,25 +45,65 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ghw46")
-quitButton = NodePath("InteractableContainer/VBoxContainer/QuitGameButton")
-startButton = NodePath("InteractableContainer/VBoxContainer/StartGameButton")
+quitButton = NodePath("CenterContainer/MainContent/ButtonsContainer/QuitGameButton")
+startButton = NodePath("CenterContainer/MainContent/ButtonsContainer/StartGameButton")
 
-[node name="InteractableContainer" type="Node" parent="."]
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_bg")
+expand_mode = 1
+stretch_mode = 6
 
-[node name="VBoxContainer" type="VBoxContainer" parent="InteractableContainer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -206.5
-offset_top = 60.5
-offset_right = 206.5
-offset_bottom = 154.5
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StartGameButton" type="Button" parent="InteractableContainer/VBoxContainer"]
+[node name="MainContent" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="TitleContainer" type="VBoxContainer" parent="CenterContainer/MainContent"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MainGameTitle" type="Label" parent="CenterContainer/MainContent/TitleContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_8saeu")
+theme_override_font_sizes/font_size = 70
+text = "THE OTHER SIDE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubTitle" type="Label" parent="CenterContainer/MainContent/TitleContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_fonts/font = ExtResource("1_tt5f1")
+theme_override_font_sizes/font_size = 18
+text = "Every coin has two sides"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="CenterContainer/MainContent"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="CenterContainer/MainContent"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="StartGameButton" type="Button" parent="CenterContainer/MainContent/ButtonsContainer"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 tooltip_text = "Rette die Welt !"
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -74,7 +115,8 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_ghw46")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ghw46")
 text = "Play"
 
-[node name="QuitGameButton" type="Button" parent="InteractableContainer/VBoxContainer"]
+[node name="QuitGameButton" type="Button" parent="CenterContainer/MainContent/ButtonsContainer"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 tooltip_text = "Schliesse das Spiel"
 theme_override_colors/font_color = Color(0.08855977, 0.08855999, 0.088559784, 1)
@@ -85,53 +127,24 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_8saeu")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_df05h")
 text = "Quit"
 
-[node name="NonInteractables" type="Node" parent="."]
-
-[node name="VBoxContainer" type="VBoxContainer" parent="NonInteractables"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -511.5
-offset_top = -236.0
-offset_right = 511.5
-offset_bottom = -88.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MainGameTitle2" type="Label" parent="NonInteractables/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("2_8saeu")
-theme_override_font_sizes/font_size = 90
-text = "DAS GAME JAM GAME"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SubTitle" type="Label" parent="NonInteractables/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_fonts/font = ExtResource("1_tt5f1")
-text = "Rette die Welt vor dem Boesen und werde der beste"
-
-[node name="credits" type="Label" parent="NonInteractables"]
+[node name="Credits" type="Label" parent="."]
+layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 20.0
-offset_top = -39.0
-offset_right = 377.0
-offset_bottom = -16.0
+offset_top = -60.0
+offset_right = 400.0
+offset_bottom = -10.0
 grow_vertical = 0
-tooltip_text = "wir sind die Entwickler dieses 2 Taegigen Projektes. Wir freuen uns ueber Feedback aller art wo auch immer es geht!
-"
+tooltip_text = "wir sind die Entwickler dieses 2 Taegigen Projektes. Wir freuen uns ueber Feedback aller art wo auch immer es geht!"
 mouse_filter = 0
 theme_override_colors/font_color = Color(1, 1, 1, 0.41568628)
 theme_override_fonts/font = ExtResource("3_ghw46")
 theme_override_font_sizes/font_size = 12
-text = "erstellt von : Nawied, Hakan, Yusuf, Eyoel und Milad"
+text = "Developed by DevsXplore
+Nawied, Hakan, Yusuf, Eyoel und Milad"
 vertical_alignment = 1
 
-[connection signal="pressed" from="InteractableContainer/VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
-[connection signal="pressed" from="InteractableContainer/VBoxContainer/QuitGameButton" to="." method="_on_quit_game_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MainContent/ButtonsContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MainContent/ButtonsContainer/QuitGameButton" to="." method="_on_quit_game_button_pressed"]
