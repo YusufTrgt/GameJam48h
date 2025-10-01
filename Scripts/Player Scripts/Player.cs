@@ -19,10 +19,12 @@ public partial class Player : CharacterBody2D
 	[Export] public float StaminaDrainRate = 20.0f;
 	[Export] public float StaminaRegenRate = 8.0f;
 	[Export] public float MinStaminaToSprint = 5.0f;
-	[Export] public float JumpStaminaCost = 25.0f; // 4 Sprünge mit 100 Stamina
+	[Export] public float JumpStaminaCost = 25.0f;
+	[Export] public float MinJumpStaminaCost = 10.0f; // Minimale Kosten für kurzen Sprung
 	private float currentStamina;
 	private bool canSprint = true;
-	private bool sprintInputReleased = true; // Neu: Prüft ob Shift losgelassen wurde
+	private bool sprintInputReleased = true;
+	private float currentJumpStamina = 0; // Verbrauchte Stamina für aktuellen Sprung
 	
 	// Coyote Time
 	[Export] public float CoyoteTime = 0.15f;
@@ -35,14 +37,11 @@ public partial class Player : CharacterBody2D
 	// Double Jump
 	[Export] public bool CanDoubleJump = true;
 	private bool hasDoubleJump = false;
+	private bool jumpStaminaPaid = false; // Prüft ob Stamina bereits bezahlt wurde
 	
 	// Animations & Visuals
 	private AnimatedSprite2D sprite;
 	private bool facingRight = true;
-	
-	// Air Control
-	private float jumpDirection = 0; // Richtung beim Absprung
-	private bool wasSprintingOnJump = false; // War Sprint beim Absprung aktiv?
 
 	public override void _Ready()
 	{
@@ -66,6 +65,8 @@ public partial class Player : CharacterBody2D
 		{
 			coyoteTimer = CoyoteTime;
 			hasDoubleJump = true;
+			currentJumpStamina = 0;
+			jumpStaminaPaid = false; // Reset wenn am Boden
 		}
 
 		// Jump Buffer Timer
@@ -83,27 +84,48 @@ public partial class Player : CharacterBody2D
 		// Jump Logic (mit Coyote Time & Buffer & Stamina)
 		if (jumpBufferTimer > 0)
 		{
-			if (coyoteTimer > 0 && currentStamina >= JumpStaminaCost)
+			if (coyoteTimer > 0 && currentStamina >= MinJumpStaminaCost)
 			{
 				velocity.Y = JumpVelocity;
-				currentStamina -= JumpStaminaCost;
+				currentJumpStamina = 0;
+				jumpStaminaPaid = false; // Stamina noch nicht bezahlt
 				jumpBufferTimer = 0;
 				coyoteTimer = 0;
 			}
-			else if (CanDoubleJump && hasDoubleJump && !IsOnFloor() && currentStamina >= JumpStaminaCost)
+			else if (CanDoubleJump && hasDoubleJump && !IsOnFloor() && currentStamina >= MinJumpStaminaCost)
 			{
-				// Double Jump kostet gleich viel und ist gleich hoch
 				velocity.Y = JumpVelocity;
-				currentStamina -= JumpStaminaCost;
+				currentJumpStamina = 0;
+				jumpStaminaPaid = false; // Stamina noch nicht bezahlt
 				hasDoubleJump = false;
 				jumpBufferTimer = 0;
 			}
 		}
 
-		// Variable Jump Height
-		if (Input.IsActionJustReleased("jump") && velocity.Y < 0)
+		// Variable Jump Height mit dynamischer Stamina-Kosten
+		if (Input.IsActionJustReleased("jump") && velocity.Y < 0 && !jumpStaminaPaid)
 		{
+			// Berechne wie viel vom Sprung genutzt wurde (0.0 = gerade gesprungen, 1.0 = voller Sprung)
+			float jumpProgress = 1.0f - (velocity.Y / JumpVelocity);
+			jumpProgress = Mathf.Clamp(jumpProgress, 0.0f, 1.0f);
+			
+			// Berechne Stamina-Kosten basierend auf Sprung-Länge
+			float staminaCost = Mathf.Lerp(MinJumpStaminaCost, JumpStaminaCost, jumpProgress);
+			currentStamina -= staminaCost;
+			jumpStaminaPaid = true; // Markiere als bezahlt
+			
+			// Verkürze den Sprung
 			velocity.Y *= 0.5f;
+			
+			GD.Print($"Sprung-Höhe: {jumpProgress * 100:F0}% - Stamina: {staminaCost:F1}");
+		}
+		else if (velocity.Y >= 0 && !jumpStaminaPaid && !IsOnFloor())
+		{
+			// Sprung wurde nicht vorzeitig abgebrochen = volle Kosten
+			currentStamina -= JumpStaminaCost;
+			jumpStaminaPaid = true; // Markiere als bezahlt
+			
+			GD.Print($"Voller Sprung - Stamina: {JumpStaminaCost}");
 		}
 
 		// Horizontal Movement mit WASD
@@ -116,7 +138,6 @@ public partial class Player : CharacterBody2D
 
 		// Sprint mit Shift & Stamina System
 		float currentSpeed = Speed;
-		bool isSprinting = false;
 		
 		// Check ob Shift losgelassen wurde
 		if (!Input.IsActionPressed("sprint"))
@@ -127,24 +148,14 @@ public partial class Player : CharacterBody2D
 		// Nur sprinten wenn: Shift gedrückt + genug Stamina + wurde vorher losgelassen + sich bewegt
 		if (Input.IsActionPressed("sprint") && canSprint && sprintInputReleased && inputAxis != 0)
 		{
-			// In der Luft: Nur sprinten wenn bereits beim Absprung gesprintet wurde
-			if (!IsOnFloor() && !wasSprintingOnJump)
+			currentSpeed = SprintSpeed;
+			currentStamina -= StaminaDrainRate * deltaF;
+			
+			if (currentStamina <= 0)
 			{
-				// Sprint nicht erlaubt in der Luft
-				isSprinting = false;
-			}
-			else
-			{
-				currentSpeed = SprintSpeed;
-				isSprinting = true;
-				currentStamina -= StaminaDrainRate * deltaF;
-				
-				if (currentStamina <= 0)
-				{
-					currentStamina = 0;
-					canSprint = false;
-					sprintInputReleased = false; // Muss Shift neu drücken
-				}
+				currentStamina = 0;
+				canSprint = false;
+				sprintInputReleased = false;
 			}
 		}
 		else
@@ -158,39 +169,26 @@ public partial class Player : CharacterBody2D
 				canSprint = true;
 		}
 
-		// Bewegung: Nur auf dem Boden volle Kontrolle
-		if (IsOnFloor())
+		// Bewegung - MIT voller Air Control
+		if (inputAxis != 0)
 		{
-			// Auf dem Boden: Normale Bewegung
-			if (inputAxis != 0)
+			velocity.X = Mathf.MoveToward(velocity.X, inputAxis * currentSpeed, Acceleration * deltaF);
+			
+			// Flip Sprite
+			if (inputAxis > 0 && !facingRight)
 			{
-				velocity.X = Mathf.MoveToward(velocity.X, inputAxis * currentSpeed, Acceleration * deltaF);
-				jumpDirection = inputAxis; // Speichere Richtung für Sprung
-				wasSprintingOnJump = isSprinting; // Speichere Sprint-Status
-				
-				// Flip Sprite
-				if (inputAxis > 0 && !facingRight)
-				{
-					facingRight = true;
-					sprite.FlipH = false;
-				}
-				else if (inputAxis < 0 && facingRight)
-				{
-					facingRight = false;
-					sprite.FlipH = true;
-				}
+				facingRight = true;
+				sprite.FlipH = false;
 			}
-			else
+			else if (inputAxis < 0 && facingRight)
 			{
-				velocity.X = Mathf.MoveToward(velocity.X, 0, Friction * deltaF);
-				jumpDirection = 0; // Keine Richtung wenn stillstehend
-				wasSprintingOnJump = false;
+				facingRight = false;
+				sprite.FlipH = true;
 			}
 		}
 		else
 		{
-			// In der Luft: Behalte die Sprung-Richtung bei (kein Air Control)
-			velocity.X = jumpDirection * currentSpeed;
+			velocity.X = Mathf.MoveToward(velocity.X, 0, Friction * deltaF);
 		}
 
 		UpdateAnimation(velocity);
