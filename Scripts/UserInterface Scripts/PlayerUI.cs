@@ -11,8 +11,14 @@ public partial class PlayerUI : CanvasLayer
 	private HBoxContainer heartsContainer;
 	private List<TextureRect> hearts = new List<TextureRect>();
 	
+	// Coin Counter
+	private Label coinCounterLabel;
+	
 	// Referenz zum Player
 	private Player player;
+	
+	// Coin Count
+	private int coinCount = 0;
 	
 	// Farben für die Bars
 	private StyleBoxFlat staminaBarStyle;
@@ -22,12 +28,19 @@ public partial class PlayerUI : CanvasLayer
 		// Hole UI Elemente
 		staminaBar = GetNode<ProgressBar>("StaminaBarBackground/StaminaBar");
 		heartsContainer = GetNode<HBoxContainer>("HeartsContainer");
+		coinCounterLabel = GetNode<Label>("CoinContainer/CoinCount");
+		
+		// Setup Coin Sprite
+		SetupCoinSprite();
 		
 		// Erstelle Styles für die Stamina Bar
 		CreateStaminaBarStyle();
 		
 		// Erstelle die Herzen
 		CreateHearts();
+		
+		// Update Coin Counter
+		UpdateCoinCounter();
 		
 		// Finde den Player in der Szene
 		CallDeferred(nameof(FindPlayer));
@@ -112,5 +125,42 @@ public partial class PlayerUI : CanvasLayer
 				heart.Modulate = new Color(0.3f, 0.3f, 0.3f, 0.5f); // Leeres/graues Herz
 			}
 		}
+	}
+	
+	private void SetupCoinSprite()
+	{
+		var coinSprite = GetNode<AnimatedSprite2D>("CoinContainer/CoinSprite");
+		
+		// Lade das Coin SpriteFrames (gleiche wie im Spiel)
+		var spriteFrames = GD.Load<SpriteFrames>("res://Scenes/muenze.tscn::SpriteFrames_sjilf");
+		if (spriteFrames != null)
+		{
+			coinSprite.SpriteFrames = spriteFrames;
+			coinSprite.Play("default");
+		}
+		else
+		{
+			// Fallback: Erstelle ein einfaches Emoji
+			GD.PrintErr("Coin SpriteFrames nicht gefunden. Verwende Fallback.");
+			// Alternativ: Zeige ein Label mit Münz-Symbol
+			var coinLabel = new Label();
+			coinLabel.Text = "🪙";
+			coinLabel.AddThemeFontSizeOverride("font_size", 20);
+			var container = GetNode<HBoxContainer>("CoinContainer");
+			container.AddChild(coinLabel);
+			container.MoveChild(coinLabel, 0); // Vor den Counter
+		}
+	}
+	
+	// Public Method für Münzen-Sammeln
+	public void AddCoin(int amount = 1)
+	{
+		coinCount += amount;
+		UpdateCoinCounter();
+	}
+	
+	private void UpdateCoinCounter()
+	{
+		coinCounterLabel.Text = $"x{coinCount}";
 	}
 }

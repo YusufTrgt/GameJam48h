@@ -53,3 +53,23 @@ grow_vertical = 2
 max_value = 100.0
 value = 100.0
 show_percentage = false
+
+[node name="CoinContainer" type="Control" parent="PlayerUI"]
+offset_left = 20.0
+offset_top = 85.0
+offset_right = 150.0
+offset_bottom = 115.0
+
+[node name="CoinSprite" type="AnimatedSprite2D" parent="PlayerUI/CoinContainer"]
+position = Vector2(16, 15)
+scale = Vector2(2, 2)
+
+[node name="CoinCount" type="Label" parent="PlayerUI/CoinContainer"]
+offset_left = 40.0
+offset_top = 0.0
+offset_right = 100.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "x0"
+vertical_alignment = 1

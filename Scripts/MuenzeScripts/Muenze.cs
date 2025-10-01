@@ -37,11 +37,14 @@ public partial class Muenze : Area2D
 	{
 		GD.Print($"+{CoinValue} coin(s)");
 		
-		// TODO: Hier Score zum Player/ScoreManager hinzufügen
-		// Beispiel wenn ScoreManager als Singleton existiert:
-		// ScoreManager.Instance.AddPoints(CoinValue);
+		// Finde das UI und update den Counter
+		var ui = GetTree().Root.GetNode<PlayerUI>("Game/PlayerUI");
+		if (ui != null)
+		{
+			ui.AddCoin(CoinValue);
+		}
 		
-		// Optional: Sound abspielen
+		// TODO: Sound abspielen
 		// if (audioPlayer != null)
 		// {
 		//     audioPlayer.Play();
