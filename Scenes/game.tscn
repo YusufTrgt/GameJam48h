@@ -18,7 +18,7 @@ position = Vector2(-63, 36)
 texture = ExtResource("1_wowpa")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_ebmjs")]
-position = Vector2(-1, 28)
+position = Vector2(-1, 68)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
