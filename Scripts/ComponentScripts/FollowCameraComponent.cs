@@ -1,6 +1,5 @@
 using Godot;
 using System;
-// using GMath;
 
 // Component Scripts sind Klassen die man direkt in die Welt setzen kann
 // d.h. man kann jetzt wie in diesem beispiel hier direkt eine kamera mit 
@@ -8,32 +7,48 @@ using System;
 // man auch woanders geben kann machen muss [sollte sauberere sein weil dadurch 
 // die restlichen scripts auch bewusst woanders verwendet werden koennen]
 
-// Kamera bewegt sich basierend auch auf der richtung des spielers
-
+// Kamera folgt dem Spieler smooth und zentriert
 
 [GlobalClass]
 public partial class FollowCameraComponent : Camera2D
 {
 	[Export] private CharacterBody2D player;
-	[Export] private float horizontalOffset = 50.0f;
 	[Export] private float deadzoneHeight = 50f;
-	[Export] private float deadzoneWidth = 15.0f;
 	[Export] private float smoothing = 4.0f;
+	
+	// Optional: Aktiviere dies für Look-Ahead Effekt beim Sprinten
+	[Export] private bool enableLookAhead = false;
+	[Export] private float horizontalOffset = 50.0f;
+	[Export] private float deadzoneWidth = 15.0f;
 	
 	private float currentSmoothingValue;
 	private bool HasExitedXDeadzone = false;
 	private float CurrentXOffset = 0f;
 	private float SelectedXVelocity;
 	private bool FollowingPlayer = false;
+	private bool isInitialized = false;
 
 	public override void _Ready()
 	{
 		currentSmoothingValue = smoothing;
-		CalculatePlayerOffsetAndFollow(0.0f, false);
+		
+		// Initialisiere Kamera-Position direkt auf dem Player
+		if (player != null)
+		{
+			GlobalPosition = player.GlobalPosition;
+			isInitialized = true;
+		}
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
+		// Fallback für erste Frame
+		if (!isInitialized && player != null)
+		{
+			GlobalPosition = player.GlobalPosition;
+			isInitialized = true;
+		}
+		
 		CalculatePlayerOffsetAndFollow((float)delta);
 	}
 	
@@ -41,12 +56,13 @@ public partial class FollowCameraComponent : Camera2D
 	// hat auch eine deadzone in der y achse sodass nicht bei jedem kleinen sprung die kamera sich bewegt
 	private void CalculatePlayerOffsetAndFollow(float DeltaSeconds, bool addDeltaToCalculation = true)
 	{
-		 if (player == null) 
+		if (player == null) 
 			return;
 
 		Vector2 PlayerPos = player.GlobalPosition;
 		Vector2 CamPos = GlobalPosition;
 
+		// === VERTIKALE BEWEGUNG (mit Deadzone) ===
 		float UpperDeadzone = CamPos.Y - deadzoneHeight;
 
 		// wenn die deadzone ueberschritten wird bewegt sich die kamera nach oben
@@ -65,52 +81,57 @@ public partial class FollowCameraComponent : Camera2D
 		if (FollowingPlayer)
 			CamPos.Y = Mathf.Lerp(CamPos.Y, PlayerPos.Y + deadzoneHeight, currentSmoothingValue * DeltaSeconds);
 		
-		 // --- Horizontale Deadzone mit Offset ---
-		float RightDeadzone = CamPos.X + deadzoneWidth;
-		float LeftDeadzone = CamPos.X - deadzoneWidth;
-
-		float PlayerVelX = GetPlayerVelocityX();
-		if (Mathf.Abs(PlayerVelX) <= 0.03)
+		// === HORIZONTALE BEWEGUNG ===
+		if (enableLookAhead)
 		{
-			// player bewegt sich nicht mehr
-			currentSmoothingValue = 0.3f;
-			HasExitedXDeadzone = false;
-			CurrentXOffset = 0.0f;
+			// Look-Ahead Effekt (original Code)
+			float RightDeadzone = CamPos.X + deadzoneWidth;
+			float LeftDeadzone = CamPos.X - deadzoneWidth;
+
+			float PlayerVelX = GetPlayerVelocityX();
+			float velocityThreshold = 10.0f;
+			
+			if (Mathf.Abs(PlayerVelX) <= velocityThreshold)
+			{
+				currentSmoothingValue = 2.0f;
+				HasExitedXDeadzone = false;
+				CurrentXOffset = 0.0f;
+			}
+			else
+			{
+				currentSmoothingValue = smoothing;
+			}
+
+			if (!HasExitedXDeadzone || !GMath.SameSign(PlayerVelX, SelectedXVelocity))
+			{
+				if (PlayerPos.X > RightDeadzone)
+				{
+					CurrentXOffset = horizontalOffset;
+					SelectedXVelocity = 1.0f;
+					HasExitedXDeadzone = true;
+				}
+				else if (PlayerPos.X < LeftDeadzone)
+				{
+					CurrentXOffset = -horizontalOffset;
+					SelectedXVelocity = -1.0f;
+					HasExitedXDeadzone = true;
+				}
+			}
+
+			CamPos.X = Mathf.Lerp(CamPos.X, PlayerPos.X + CurrentXOffset, currentSmoothingValue * DeltaSeconds);
 		}
 		else
 		{
-			currentSmoothingValue = smoothing;
+			// Einfache zentrierte Kamera (Standard)
+			CamPos.X = Mathf.Lerp(CamPos.X, PlayerPos.X, smoothing * DeltaSeconds);
 		}
-
-		if (!HasExitedXDeadzone || !GMath.SameSign(PlayerVelX, SelectedXVelocity))
-		{
-			if (PlayerPos.X > RightDeadzone)
-			{
-				CurrentXOffset = horizontalOffset; // Offset nach rechts
-				SelectedXVelocity = 1.0f;
-				HasExitedXDeadzone = true;
-			}
-			else if (PlayerPos.X < LeftDeadzone)
-			{
-				CurrentXOffset = -horizontalOffset; // Offset nach links
-				SelectedXVelocity = -1.0f;
-				HasExitedXDeadzone = true;
-			}
-		}
-		
-
-		// Kamera X folgt dem Spieler mit Offset
-		CamPos.X = Mathf.Lerp(CamPos.X, PlayerPos.X + CurrentXOffset, currentSmoothingValue * DeltaSeconds);
 		
 		GlobalPosition = new Vector2(CamPos.X, CamPos.Y);
-		
-		GD.Print(HasExitedXDeadzone);
 	}
 	
 	// prueft ob der spieler den boden beruehrt
 	private bool PlayerIsGrounded()
 	{
-		// Beispiel: prüft, ob der Spieler am Boden ist
 		if (player != null)
 		{
 			return player.IsOnFloor();
