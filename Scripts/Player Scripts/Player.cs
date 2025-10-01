@@ -42,6 +42,11 @@ public partial class Player : CharacterBody2D
 	// Animations & Visuals
 	private AnimatedSprite2D sprite;
 	private bool facingRight = true;
+	[Export] public float RunAnimThreshold = 12f;      
+	[Export] public float RunSpeedScaleMin = 1.0f;     
+	[Export] public float RunSpeedScaleMax = 1.3f;     
+
+	private string _currentAnim = "";
 
 	// Air Input Lock
 	private float airInputAxis = 0;
@@ -194,25 +199,39 @@ public partial class Player : CharacterBody2D
 		Velocity = velocity;
 		MoveAndSlide();
 	}
+	
+	private void PlayAnim(string name, float speedScale = 1f) {
+		if (_currentAnim == name && Mathf.IsEqualApprox(sprite.SpeedScale, speedScale)) return;
+		sprite.SpeedScale = speedScale;
+		sprite.Play(name);
+		_currentAnim = name;
+	}
 
-	private void UpdateAnimation(Vector2 velocity)
-	{
-		if (IsOnFloor())
-		{
-			if (Mathf.Abs(velocity.X) > 10)
-			{
-				sprite.Play("idle");
-			}
-			else
-			{
-				sprite.Play("idle");
-			}
+	private void UpdateAnimation(Vector2 velocity) {
+	// In der Luft: (optional) jump/fall unterscheiden
+		if (!IsOnFloor()) {
+			if (velocity.Y < -5f)
+				PlayAnim("jump");
+			else PlayAnim("fall");
+			return;
 		}
-		else
-		{
-			sprite.Play("idle");
+
+		// Am Boden: run vs idle
+		float xSpeed = Mathf.Abs(velocity.X);
+		if (xSpeed > RunAnimThreshold){
+			// Animationsgeschwindigkeit leicht an reales Tempo koppeln
+			// t ~ 0 bei Speed, ~1 bei SprintSpeed (geclamped)
+			float baseSpeed = Mathf.Max(1f, Speed); // Schutz gegen 0
+			float t = Mathf.InverseLerp(baseSpeed, SprintSpeed, xSpeed);
+			float animSpeed = Mathf.Lerp(RunSpeedScaleMin, RunSpeedScaleMax, Mathf.Clamp(t, 0f, 1f));
+
+			PlayAnim("run", animSpeed);
+		}
+		else {
+			PlayAnim("idle", 1f);
 		}
 	}
+
 	
 	// Public Methods für UI
 	public float GetStaminaPercent()
