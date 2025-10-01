@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b1f6soankvjl0"
+path="res://.godot/imported/lfh - cleaned and equalized.wav-b27dd12e3306b832a05fd6314c716499.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/Background/lfh - cleaned and equalized.wav"
+dest_files=["res://.godot/imported/lfh - cleaned and equalized.wav-b27dd12e3306b832a05fd6314c716499.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

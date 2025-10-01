@@ -5,10 +5,11 @@ public partial class Player : CharacterBody2D
 {
 	// Movement Settings
 	[Export] public float Speed = 80.0f;
-	[Export] public float SprintSpeed = 180.0f;
-	[Export] public float JumpVelocity = -350.0f;
+	[Export] public float SprintSpeed = 140.0f;
+	[Export] public float JumpVelocity = -250.0f;
 	[Export] public float Acceleration = 1500.0f;
 	[Export] public float Friction = 1200.0f;
+	[Export] public float GravityMul = 0.7f;
 	
 	// Health System
 	[Export] public float MaxHealth = 100.0f;
@@ -17,7 +18,7 @@ public partial class Player : CharacterBody2D
 	// Stamina System
 	[Export] public float MaxStamina = 100.0f;
 	[Export] public float StaminaDrainRate = 20.0f;
-	[Export] public float StaminaRegenRate = 8.0f;
+	[Export] public float StaminaRegenRate = 14.0f;
 	[Export] public float MinStaminaToSprint = 5.0f;
 	[Export] public float JumpStaminaCost = 25.0f;
 	[Export] public float MinJumpStaminaCost = 10.0f;
@@ -60,7 +61,7 @@ public partial class Player : CharacterBody2D
 		// Gravity
 		if (!IsOnFloor())
 		{
-			velocity += GetGravity() * deltaF;
+			velocity += GetGravity() * GravityMul * deltaF;
 			coyoteTimer -= deltaF;
 		}
 		else

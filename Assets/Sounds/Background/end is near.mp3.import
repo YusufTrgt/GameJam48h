@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://brbwm0dyf3hsx"
+path="res://.godot/imported/end is near.mp3-2e84fe4ea9e0d548d71d1df9fdcff325.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Background/end is near.mp3"
+dest_files=["res://.godot/imported/end is near.mp3-2e84fe4ea9e0d548d71d1df9fdcff325.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
