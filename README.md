@@ -10,3 +10,5 @@ Entwickelt von DevsXplore: Nawied, Milad, Yusuf, Hakan und Eyoel.
 hier sieht man das Game Design Document (GDD) dieses Projektes : https://docs.google.com/document/d/1Gz7CeUyKcHK8m4cc5pCkGLHPvEpql2RmNVGweagTwkI/edit?tab=t.0
 
 Genutzt wurden: ChatGpt, Claude, sowie Gemini.
+
+Um das Projekt zu testen werden Godot Engine 4.5, sowie .NET 8.0 benötigt. Dort kann das Projekt geladen und mit F5 ausgeführt werden.
