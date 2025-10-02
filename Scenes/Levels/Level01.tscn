@@ -1,59 +1,59 @@
 [gd_scene load_steps=100 format=3 uid="uid://ddbpsknfevufc"]
 
-[ext_resource type="Script" uid="uid://cxmmjdi87jual" path="res://Scripts/Game/Game.cs" id="1_6xvgv"]
-[ext_resource type="Texture2D" uid="uid://dxagthltjumtj" path="res://Assets/UI/menu_background.png" id="1_bg"]
-[ext_resource type="PackedScene" uid="uid://phvg4nuchhnw" path="res://Scenes/player.tscn" id="1_ebmjs"]
-[ext_resource type="PackedScene" uid="uid://p6p4ksofqsum" path="res://Scenes/muenze.tscn" id="2_qxrlw"]
-[ext_resource type="Script" uid="uid://ba8mjqayycu8j" path="res://Scripts/UserInterface Scripts/PlayerUI.cs" id="3_ui"]
-[ext_resource type="Script" uid="uid://d32jf4pffhqm0" path="res://Scripts/ComponentScripts/FollowCameraComponent.cs" id="4_3dryh"]
-[ext_resource type="FontFile" uid="uid://cuqyp32a1lc4w" path="res://Fonts/CinzelDecorative-Regular.ttf" id="6_1l0tm"]
-[ext_resource type="Texture2D" uid="uid://bn88gpdqkpux1" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile1.png" id="8_32sfa"]
-[ext_resource type="Texture2D" uid="uid://d3oryg830uk5f" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile2.png" id="9_titue"]
-[ext_resource type="Texture2D" uid="uid://b5rt4npw3dn7d" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile11.png" id="10_tt7mg"]
-[ext_resource type="Texture2D" uid="uid://crqrxrcoq8tog" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile12.png" id="11_htg8p"]
-[ext_resource type="Texture2D" uid="uid://c78dw26kh3myq" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile13.png" id="12_jcvim"]
-[ext_resource type="Texture2D" uid="uid://o28j4krvwkj1" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile14.png" id="13_fnkle"]
-[ext_resource type="Texture2D" uid="uid://bjc1i1m6hgm5t" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile15.png" id="14_wr3wg"]
-[ext_resource type="Texture2D" uid="uid://bbjnophy7axmk" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile16.png" id="15_6xvgv"]
-[ext_resource type="Texture2D" uid="uid://4nslc88bu8pq" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile17.png" id="16_8lpvs"]
-[ext_resource type="Texture2D" uid="uid://b82ghlpylcfjh" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile18.png" id="17_x6jpx"]
-[ext_resource type="Texture2D" uid="uid://dtvfu8s75ivts" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile19.png" id="18_sjh24"]
-[ext_resource type="Texture2D" uid="uid://c0n0wyt4p7owm" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile20.png" id="19_k5jl5"]
-[ext_resource type="Texture2D" uid="uid://bh7dqpgu8y1d2" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile3.png" id="20_nqk4g"]
-[ext_resource type="Texture2D" uid="uid://gm0s784c5l8u" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile21.png" id="21_fh6x0"]
-[ext_resource type="Texture2D" uid="uid://ctlp63ff105vn" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile22.png" id="22_j0obb"]
-[ext_resource type="Texture2D" uid="uid://0ol3ivmn0ats" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile23.png" id="23_nfavm"]
-[ext_resource type="Texture2D" uid="uid://xrqku5f4pa0b" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile24.png" id="24_jcn4n"]
-[ext_resource type="Texture2D" uid="uid://dbenwc0ctqer7" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile25.png" id="25_l4kai"]
-[ext_resource type="Texture2D" uid="uid://d0p4ortjkugxg" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile26.png" id="26_kcoun"]
-[ext_resource type="Texture2D" uid="uid://ku3vc48q11t8" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile27.png" id="27_jegl3"]
-[ext_resource type="Texture2D" uid="uid://d3lkfgrgahlh0" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile28.png" id="28_csv17"]
-[ext_resource type="Texture2D" uid="uid://cqmpy7drfs8us" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile29.png" id="29_6i05k"]
-[ext_resource type="Texture2D" uid="uid://va0cs8nrp4mp" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile30.png" id="30_1kfie"]
-[ext_resource type="Texture2D" uid="uid://bqsk8xsxihfts" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile4.png" id="31_sfx3s"]
-[ext_resource type="Texture2D" uid="uid://djq6o1fb1ydn2" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile31.png" id="32_p5qon"]
-[ext_resource type="Texture2D" uid="uid://duqxe5xf43jxd" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile32.png" id="33_gyste"]
-[ext_resource type="Texture2D" uid="uid://dryeub38d3f7p" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile33.png" id="34_p3b6d"]
-[ext_resource type="Texture2D" uid="uid://brme37icy5iin" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile34.png" id="35_bchkn"]
-[ext_resource type="Texture2D" uid="uid://dr3vjxjn4p3ny" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile35.png" id="36_ff75x"]
-[ext_resource type="Texture2D" uid="uid://djoyasj4l77d1" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile36.png" id="37_a2m5q"]
-[ext_resource type="Texture2D" uid="uid://cpmh6vxd0vepo" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Details/bridge1.png" id="38_lknxd"]
-[ext_resource type="Texture2D" uid="uid://gdfisih61spc" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Details/bridge2.png" id="39_ckj55"]
-[ext_resource type="Texture2D" uid="uid://dvnogwrnsmxxq" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Details/bridge3.png" id="40_q8b24"]
-[ext_resource type="Texture2D" uid="uid://brstyt5qax4lf" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Details/door.png" id="41_aujhx"]
-[ext_resource type="Texture2D" uid="uid://hr50s2lvq18w" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile5.png" id="42_ifeo7"]
-[ext_resource type="Texture2D" uid="uid://dfni4aw5onsq2" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_lava/lava_tile6.png" id="43_jcvim"]
-[ext_resource type="Texture2D" uid="uid://cnhblwi7wj7kj" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile6.png" id="43_qj5kr"]
-[ext_resource type="Texture2D" uid="uid://blr7oytmyedt8" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile7.png" id="44_d5jaa"]
-[ext_resource type="Texture2D" uid="uid://cqpfkcpak420w" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_lava/lava_tile7.png" id="44_fnkle"]
-[ext_resource type="Texture2D" uid="uid://cq7iy6gdlo6so" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile8.png" id="45_k8ojv"]
-[ext_resource type="Texture2D" uid="uid://e4bfge6krl6w" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_lava/lava_tile3.png" id="45_wr3wg"]
-[ext_resource type="Texture2D" uid="uid://dc2bapu58hne8" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_lava/lava_tile8.png" id="46_6xvgv"]
-[ext_resource type="Texture2D" uid="uid://cyhax37vpejeg" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile9.png" id="46_7sqp1"]
-[ext_resource type="Texture2D" uid="uid://bd1wq33xowide" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile10.png" id="47_gsm33"]
-[ext_resource type="Texture2D" uid="uid://cimmiumb0ywsp" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Background/Pale/Background.png" id="51_jcvim"]
+[ext_resource type="Script" uid="uid://cxmmjdi87jual" path="res://Scripts/Managers/GameManager.cs" id="1_6xvgv"]
+[ext_resource type="Texture2D" uid="uid://6c2d0xmy23ak" path="res://Assets/UI/menu_background.png" id="1_bg"]
+[ext_resource type="PackedScene" uid="uid://phvg4nuchhnw" path="res://Scenes/Player/Player.tscn" id="1_ebmjs"]
+[ext_resource type="PackedScene" uid="uid://p6p4ksofqsum" path="res://Scenes/Collectables/Coin.tscn" id="2_qxrlw"]
+[ext_resource type="Script" uid="uid://cohr2ov45nx54" path="res://Scripts/UI/PlayerUI.cs" id="3_ui"]
+[ext_resource type="Script" uid="uid://cnjnmxh6n5g6g" path="res://Scripts/Player/PlayerCamera.cs" id="4_3dryh"]
+[ext_resource type="FontFile" uid="uid://dkyas7m1ie6u1" path="res://Fonts/CinzelDecorative-Regular.ttf" id="6_1l0tm"]
+[ext_resource type="Texture2D" uid="uid://c4exumefr3t0v" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile1.png" id="8_32sfa"]
+[ext_resource type="Texture2D" uid="uid://cek84pthdt1w3" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile2.png" id="9_titue"]
+[ext_resource type="Texture2D" uid="uid://dpqovylbd1pbm" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile11.png" id="10_tt7mg"]
+[ext_resource type="Texture2D" uid="uid://cx8mju20737rq" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile12.png" id="11_htg8p"]
+[ext_resource type="Texture2D" uid="uid://87sclg8fq00s" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile13.png" id="12_jcvim"]
+[ext_resource type="Texture2D" uid="uid://dotu2q47ss84t" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile14.png" id="13_fnkle"]
+[ext_resource type="Texture2D" uid="uid://b4vc3k10vux65" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile15.png" id="14_wr3wg"]
+[ext_resource type="Texture2D" uid="uid://c6h3nyliowhmh" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile16.png" id="15_6xvgv"]
+[ext_resource type="Texture2D" uid="uid://buftxq74a7ktr" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile17.png" id="16_8lpvs"]
+[ext_resource type="Texture2D" uid="uid://dih1if6rhdrj4" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile18.png" id="17_x6jpx"]
+[ext_resource type="Texture2D" uid="uid://cwj07jsvvcdb2" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile19.png" id="18_sjh24"]
+[ext_resource type="Texture2D" uid="uid://bokbri436eojt" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile20.png" id="19_k5jl5"]
+[ext_resource type="Texture2D" uid="uid://dthu6uwugg1c8" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile3.png" id="20_nqk4g"]
+[ext_resource type="Texture2D" uid="uid://8hqk00htnqgb" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile21.png" id="21_fh6x0"]
+[ext_resource type="Texture2D" uid="uid://c76j0e6837k6l" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile22.png" id="22_j0obb"]
+[ext_resource type="Texture2D" uid="uid://cp63bm6k5mbl1" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile23.png" id="23_nfavm"]
+[ext_resource type="Texture2D" uid="uid://cnvlxrcgpjmtw" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile24.png" id="24_jcn4n"]
+[ext_resource type="Texture2D" uid="uid://cq2xm0hykt6gb" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile25.png" id="25_l4kai"]
+[ext_resource type="Texture2D" uid="uid://dhu6je5g5rgkl" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile26.png" id="26_kcoun"]
+[ext_resource type="Texture2D" uid="uid://cvxknin2qgxav" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile27.png" id="27_jegl3"]
+[ext_resource type="Texture2D" uid="uid://dxs0km78koo30" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile28.png" id="28_csv17"]
+[ext_resource type="Texture2D" uid="uid://cmd25r6euh76f" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile29.png" id="29_6i05k"]
+[ext_resource type="Texture2D" uid="uid://bi2v6m4lnbtte" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile30.png" id="30_1kfie"]
+[ext_resource type="Texture2D" uid="uid://cxujrh0jykvtq" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile4.png" id="31_sfx3s"]
+[ext_resource type="Texture2D" uid="uid://bc0wdu5ffyi0x" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile31.png" id="32_p5qon"]
+[ext_resource type="Texture2D" uid="uid://ntku7sxxqkm1" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile32.png" id="33_gyste"]
+[ext_resource type="Texture2D" uid="uid://c3nvrhn0m6uft" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile33.png" id="34_p3b6d"]
+[ext_resource type="Texture2D" uid="uid://x5knteumo2r2" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile34.png" id="35_bchkn"]
+[ext_resource type="Texture2D" uid="uid://bg20avffiv428" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile35.png" id="36_ff75x"]
+[ext_resource type="Texture2D" uid="uid://de64t47de72gs" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile36.png" id="37_a2m5q"]
+[ext_resource type="Texture2D" uid="uid://dmkj1a1cy7w2g" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Details/bridge1.png" id="38_lknxd"]
+[ext_resource type="Texture2D" uid="uid://dldi6u5k3e3f2" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Details/bridge2.png" id="39_ckj55"]
+[ext_resource type="Texture2D" uid="uid://divy2s7vi8oh7" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Details/bridge3.png" id="40_q8b24"]
+[ext_resource type="Texture2D" uid="uid://dfxku656pqpk0" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Details/door.png" id="41_aujhx"]
+[ext_resource type="Texture2D" uid="uid://bisvbmonei3li" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile5.png" id="42_ifeo7"]
+[ext_resource type="Texture2D" uid="uid://dot1xxmlpnct6" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_lava/lava_tile6.png" id="43_jcvim"]
+[ext_resource type="Texture2D" uid="uid://egatl0uahy1i" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile6.png" id="43_qj5kr"]
+[ext_resource type="Texture2D" uid="uid://cxntarpa2btln" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile7.png" id="44_d5jaa"]
+[ext_resource type="Texture2D" uid="uid://d3i0n0xspr2jy" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_lava/lava_tile7.png" id="44_fnkle"]
+[ext_resource type="Texture2D" uid="uid://t26twy88umtx" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile8.png" id="45_k8ojv"]
+[ext_resource type="Texture2D" uid="uid://b4ic1f6pfo4fu" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_lava/lava_tile3.png" id="45_wr3wg"]
+[ext_resource type="Texture2D" uid="uid://bc1hxv06cxak5" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_lava/lava_tile8.png" id="46_6xvgv"]
+[ext_resource type="Texture2D" uid="uid://y2uw1o4dnsid" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile9.png" id="46_7sqp1"]
+[ext_resource type="Texture2D" uid="uid://cgpn06qwwoank" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile10.png" id="47_gsm33"]
+[ext_resource type="Texture2D" uid="uid://spoo5n4vrul3" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Background/Pale/Background.png" id="51_jcvim"]
 [ext_resource type="AudioStream" uid="uid://b1f6soankvjl0" path="res://Assets/Sounds/Background/lfh - cleaned and equalized.wav" id="52_fnkle"]
-[ext_resource type="PackedScene" uid="uid://bms3n881t7lcm" path="res://Scenes/pause_menu.tscn" id="53_wr3wg"]
+[ext_resource type="PackedScene" uid="uid://bms3n881t7lcm" path="res://Scenes/UI/PauseMenu.tscn" id="53_wr3wg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lrctp"]
 texture = ExtResource("8_32sfa")
@@ -1371,9 +1371,9 @@ sources/43 = SubResource("TileSetAtlasSource_x6jpx")
 sources/45 = SubResource("TileSetAtlasSource_sjh24")
 sources/46 = SubResource("TileSetAtlasSource_k5jl5")
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("pauseMenuLayer")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("pauseMenu")]
 script = ExtResource("1_6xvgv")
-pauseMenuLayer = NodePath("PauseMenu")
+pauseMenu = NodePath("PauseMenu")
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -100
@@ -1455,14 +1455,13 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(20, 25)
 layout_mode = 2
 
-[node name="FollowCameraComponent" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+[node name="PlayerCamera" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 position = Vector2(-43, 100)
 zoom = Vector2(4, 4)
 process_callback = 0
 position_smoothing_enabled = true
 script = ExtResource("4_3dryh")
-player = NodePath("../CharacterBody2D")
-metadata/_custom_type_script = "uid://d32jf4pffhqm0"
+target = NodePath("../CharacterBody2D")
 
 [node name="InfiniteBackground2" type="Sprite2D" parent="."]
 z_index = -100
@@ -1488,7 +1487,7 @@ tile_set = SubResource("TileSet_hak0f")
 format = 2
 layer_0/tile_data = PackedInt32Array(524284, 65537, 1, 589820, 65537, 1, 524285, 65537, 1, 589821, 1, 1, 524286, 2, 1, 589822, 65537, 1, 524287, 65538, 1, 589823, 1, 1, 458752, 2, 1, 524288, 65537, 1, 458755, 65537, 1, 524291, 1, 1, 458756, 1, 1, 524292, 65537, 1, 458757, 65537, 1, 524293, 1, 1, 393222, 1, 1, 393223, 65537, 1, 327688, 1, 1, 327689, 65537, 1, 131085, 1, 1, 131086, 65537, 1, 262163, 1, 1, 262164, 65537, 1, 524303, 1, 1, 524304, 65537, 1, 589841, 1, 1, 589842, 1, 1, 589847, 65537, 1, 262165, 1, 1, 262166, 65537, 1, 196629, 1, 1, 196630, 65537, 1, 131093, 1, 1, 131094, 65537, 1, 65557, 1, 1, 65558, 65537, 1, 21, 1, 1, 22, 65537, 1, -65515, 1, 1, -65514, 65537, 1, -131051, 1, 1, -131050, 65537, 1, -196587, 1, 1, -196586, 65537, 1, -262123, 1, 1, -262122, 65537, 1, -196613, 7, 2, -131077, 7, 3, -196612, 65543, 2, -131076, 65543, 3, -196611, 7, 2, -131075, 7, 3, -196610, 65543, 2, -131074, 65543, 3, -196609, 7, 2, -131073, 7, 3, -262144, 65543, 2, -196608, 65543, 3, -262143, 7, 2, -196607, 7, 3, -262142, 65543, 2, -196606, 65543, 3, -262141, 7, 2, -196605, 7, 3, -262140, 65543, 2, -196604, 65543, 3, -262139, 7, 2, -196603, 7, 3, -262138, 65543, 2, -196602, 65543, 3, -262137, 7, 2, -196601, 7, 3, -262136, 65543, 2, -196600, 65543, 3, -262135, 7, 2, -196599, 7, 3, -262134, 65543, 2, -196598, 65543, 3, -262133, 7, 2, -196597, 7, 3, -262132, 65543, 2, -196596, 65543, 3, -262131, 7, 2, -196595, 7, 3, -262130, 65543, 2, -196594, 65543, 3, -262129, 7, 2, -196593, 7, 3, -262128, 65543, 2, -196592, 65543, 3, -262127, 7, 2, -196591, 7, 3, -262126, 65543, 2, -196590, 65543, 3, -262125, 7, 2, -196589, 7, 3, -262124, 65543, 2, -196588, 65543, 3, -196615, 1, 1, -196614, 65537, 1, -131079, 1, 1, -131078, 65537, 1, -65543, 1, 1, -65542, 65537, 1, -7, 1, 1, -6, 65537, 1, 65529, 1, 1, 65530, 65537, 1, 131065, 1, 1, 131066, 65537, 1, 196601, 1, 1, 196602, 65537, 1, 262137, 1, 1, 262138, 65537, 1, 327673, 1, 1, 327674, 65537, 1, 393209, 1, 1, 393210, 65537, 1, 458745, 1, 1, 458746, 65537, 1, 524281, 1, 1, 524282, 65537, 1, 589817, 1, 1, 589818, 65537, 1, 589819, 1, 1, 524283, 1, 1, 196621, 1, 1, 196622, 65537, 1, 262157, 1, 1, 262158, 65537, 1, 327693, 1, 1, 327694, 65537, 1, 393229, 1, 1, 393230, 65537, 1, 458765, 1, 1, 458766, 65537, 1, 524301, 1, 1, 524302, 65537, 1, 65551, 1, 1, 65552, 65537, 1, 327707, 1, 1, 327709, 1, 1, 327710, 65537, 1, 262173, 1, 1, 262174, 65537, 1, 196637, 1, 1, 196638, 65537, 1, 131101, 1, 1, 131102, 65537, 1, 65565, 1, 1, 65566, 65537, 1, 29, 1, 1, 30, 65537, 1, 65559, 1, 1, 65560, 65537, 1, 65561, 1, 1, 65562, 65537, 1, -262121, 7, 2, -196585, 7, 3, -262120, 65543, 2, -196584, 65543, 3, -262119, 7, 2, -196583, 7, 3, -262118, 65543, 2, -196582, 65543, 3, -262117, 7, 2, -196581, 7, 3, -262116, 65543, 2, -196580, 65543, 3, -262115, 7, 2, -196579, 1, 1, -262114, 65543, 2, -196578, 65537, 1, -262113, 7, 2, -196577, 7, 3, -262112, 65543, 2, -196576, 65543, 3, -262111, 7, 2, -196575, 7, 3, -262110, 65543, 2, -196574, 65543, 3, -262109, 7, 2, -196573, 7, 3, -262108, 65543, 2, -196572, 65543, 3, -262107, 7, 2, -196571, 7, 3, -262106, 1, 1, -196570, 1, 1, -262105, 65537, 1, -196569, 65537, 1, -262104, 65543, 2, -196568, 65543, 3, -262103, 7, 2, -196567, 7, 3, -262102, 65543, 2, -196566, 65543, 3, -262101, 7, 2, -196565, 7, 3, -262100, 65543, 2, -196564, 65543, 3, -262099, 7, 2, -196563, 7, 3, -262098, 65543, 2, -196562, 65543, 3, -262097, 7, 2, -196561, 7, 3, -262096, 65543, 2, -196560, 65543, 3, -262095, 7, 2, -196559, 7, 3, -262094, 65543, 2, -196558, 65543, 3, 31, 1, 1, 32, 65537, 1, 393224, 1, 1, 393225, 65537, 1, 327690, 42, 3, 327691, 65578, 3, 327692, 131114, 3, 589824, 42, 3, 589825, 65578, 3, 589826, 131114, 3, 589827, 196650, 3, 655358, 1, 1, 655359, 65537, 1, 720894, 1, 1, 720895, 65537, 1, 655360, 1, 1, 655363, 65537, 1, 655364, 1, 1, 655365, 65537, 1, 589828, 1, 1, 589829, 65537, 1, 589830, 1, 1, 589831, 65537, 1, 524294, 65537, 1, 524295, 65537, 1, 458758, 1, 1, 458759, 65537, 1, 655356, 1, 1, 655357, 65537, 1, 131108, 1, 1, 131109, 65537, 1, 327711, 1, 1, 327712, 65537, 1, 65574, 1, 1, 65575, 65537, 1, 38, 1, 1, 39, 65537, 1, -65498, 1, 1, -65497, 65537, 1, -131034, 1, 1, -131033, 65537, 1, 196642, 1, 1, 196643, 65537, 1, 262178, 1, 1, 262179, 65537, 1, 393247, 1, 1, 393248, 65537, 1, 458783, 1, 1, 458784, 65537, 1, 458785, 1, 1, 458786, 65537, 1, 458791, 1, 1, 458792, 65537, 1, 393253, 1, 1, 393254, 65537, 1, 589859, 42, 3, 589860, 65578, 3, 524321, 1, 1, 524322, 65537, 1, 589857, 1, 1, 589858, 65537, 1, 458789, 1, 1, 458790, 65537, 1, 524325, 1, 1, 524326, 65537, 1, 589861, 1, 1, 589862, 65537, 1, 196651, 1, 1, 131118, 1, 1, 131119, 65537, 1, 65583, 1, 1, 65584, 65537, 1, 48, 1, 1, 49, 65537, 1, 52, 1, 1, 53, 65537, 1, -262093, 7, 2, -196557, 7, 3, -262092, 65543, 2, -196556, 65543, 3, -262091, 7, 2, -196555, 7, 3, -262090, 65543, 2, -196554, 65543, 3, -262089, 7, 2, -196553, 7, 3, -262088, 65543, 2, -196552, 65543, 3, -262087, 7, 2, -196551, 7, 3, -262086, 65543, 2, -196550, 65543, 3, -262085, 7, 2, -196549, 7, 3, -262084, 65543, 2, -196548, 65543, 3, -262083, 7, 2, -196547, 1, 1, -262082, 65543, 2, -196546, 65537, 1, -262081, 7, 2, -196545, 7, 3, -262080, 65543, 2, -196544, 65543, 3, -262079, 7, 2, -196543, 7, 3, -262078, 65543, 2, -196542, 65543, 3, -262077, 7, 2, -196541, 7, 3, -262076, 65543, 2, -196540, 65543, 3, -262075, 7, 2, -196539, 7, 3, -262074, 65543, 2, -196538, 65543, 3, -262073, 7, 2, -196537, 7, 3, -262072, 65543, 2, -196536, 65543, 3, -262071, 7, 2, -196535, 7, 3, -262070, 7, 2, -196534, 7, 3, -262069, 65543, 2, -196533, 65543, 3, -262068, 7, 2, -196532, 7, 3, -262067, 65543, 2, -196531, 65543, 3, -262066, 7, 2, -196530, 7, 3, -262065, 65543, 2, -196529, 65543, 3, -262064, 7, 2, -196528, 7, 3, -262063, 65543, 2, -196527, 65543, 3, -262062, 7, 2, -196526, 7, 3, -262061, 65543, 2, -196525, 65543, 3, -262060, 7, 2, -196524, 7, 3, -262059, 65543, 2, -196523, 65543, 3, -262058, 7, 2, -196522, 7, 3, -262057, 65543, 2, -196521, 65543, 3, -262056, 1, 1, -196520, 1, 1, -262055, 65537, 1, -196519, 65537, 1, 589884, 1, 1, 589885, 65537, 1, 131133, 1, 1, 131134, 65537, 1, -131011, 1, 1, -131010, 65537, 1, -65475, 1, 1, -65474, 65537, 1, 61, 1, 1, 62, 65537, 1, 65597, 1, 1, 65598, 65537, 1, 196669, 1, 1, 196670, 65537, 1, 262205, 1, 1, 262206, 65537, 1, 327741, 1, 1, 327742, 65537, 1, 67, 1, 1, 68, 65537, 1, 524353, 1, 1, 524354, 65537, 1, 524355, 1, 1, 524356, 65537, 1, 458819, 1, 1, 458820, 65537, 1, 393283, 1, 1, 393284, 65537, 1, 327747, 1, 1, 327748, 65537, 1, 262211, 1, 1, 262212, 65537, 1, 196675, 1, 1, 196676, 65537, 1, 131139, 1, 1, 131140, 65537, 1, 65603, 1, 1, 65604, 65537, 1, -130984, 1, 1, -130983, 65537, 1, -65448, 1, 1, -65447, 65537, 1, 88, 327719, 1, 89, 65537, 1, 65624, 327719, 2, 65625, 65537, 1, 131160, 327719, 3, 131161, 65537, 1, 196696, 327719, 4, 196697, 65537, 1, 262232, 327719, 5, 262233, 65537, 1, 327768, 1, 1, 327769, 65537, 1, 393304, 1, 1, 393305, 65537, 1, 458840, 1, 1, 458841, 65537, 1, 524376, 1, 1, 524377, 65537, 1, 589912, 1, 1, 589913, 65537, 1, 655448, 1, 1, 655449, 65537, 1, 720984, 1, 1, 720985, 65537, 1, 786520, 1, 1, 786521, 65537, 1, 327762, 131115, 1, 393298, 131115, 2, 327763, 196651, 1, 393299, 196651, 2, 327759, 46, 1, 393295, 46, 2, 327760, 65582, 1, 393296, 65582, 2, 393297, 131114, 3, 327761, 65578, 1, 327757, 1, 1, 327758, 65537, 1, 196682, 1, 1, 196671, 1, 1, 196672, 65537, 1, 71, 1, 1, 72, 65537, 1, 327764, 1, 1, 327765, 65537, 1, 327766, 1, 1, 327767, 65537, 1, 85, 131111, 1, 65621, 131111, 2, 131157, 131111, 3, 196693, 131111, 4, 262229, 131111, 5, 86, 196647, 1, 65622, 196647, 2, 131158, 196647, 3, 196694, 196647, 4, 262230, 196647, 5, 87, 262183, 1, 65623, 262183, 2, 131159, 262183, 3, 196695, 262183, 4, 262231, 262183, 5)
 
-[node name="Muenze" parent="." instance=ExtResource("2_qxrlw")]
+[node name="Coin" parent="." instance=ExtResource("2_qxrlw")]
 position = Vector2(36, 128)
 
 [node name="Muenze2" parent="." instance=ExtResource("2_qxrlw")]

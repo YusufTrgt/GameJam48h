@@ -1,5 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bms3n881t7lcm"]
 
+[ext_resource type="Script" path="res://Scripts/UI/PauseMenu.cs" id="1_pause"]
 [ext_resource type="FontFile" uid="uid://da8xbn27w3kp5" path="res://Fonts/Cinzel-VariableFont_wght.ttf" id="2_1och7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpi0q"]
@@ -35,6 +36,7 @@ shadow_offset = Vector2(2, 2)
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
+script = ExtResource("1_pause")
 
 [node name="Control" type="Control" parent="."]
 process_mode = 3
@@ -96,6 +98,3 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_u8tnp")
 theme_override_styles/hover = SubResource("StyleBoxFlat_stj27")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ix48p")
 text = "Quit"
-
-[connection signal="pressed" from="Control/CenterContainer/MainContent/ButtonsContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="Control/CenterContainer/MainContent/ButtonsContainer/QuitButton" to="." method="_on_quit_button_pressed"]

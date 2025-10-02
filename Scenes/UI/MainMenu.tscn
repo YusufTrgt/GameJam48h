@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://gmyigspeh7ma"]
 
-[ext_resource type="Script" uid="uid://dhq2m2wol7y6k" path="res://Scripts/UserInterface Scripts/MainMenuManager.cs" id="1_ghw46"]
+[ext_resource type="Script" path="res://Scripts/UI/MainMenuManager.cs" id="1_ghw46"]
 [ext_resource type="FontFile" uid="uid://da8xbn27w3kp5" path="res://Fonts/Cinzel-VariableFont_wght.ttf" id="1_tt5f1"]
 [ext_resource type="FontFile" uid="uid://ckdb7k1yo05k" path="res://Fonts/CinzelDecorative-Bold.ttf" id="2_8saeu"]
 [ext_resource type="FontFile" uid="uid://cuqyp32a1lc4w" path="res://Fonts/CinzelDecorative-Regular.ttf" id="3_ghw46"]
@@ -38,7 +38,7 @@ shadow_offset = Vector2(2, 2)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_df05h"]
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("quitButton", "startButton")]
+[node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -46,8 +46,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ghw46")
-quitButton = NodePath("CenterContainer/MainContent/ButtonsContainer/QuitGameButton")
-startButton = NodePath("CenterContainer/MainContent/ButtonsContainer/StartGameButton")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -151,6 +149,3 @@ vertical_alignment = 1
 stream = ExtResource("6_8um5k")
 volume_db = -16.0
 autoplay = true
-
-[connection signal="pressed" from="CenterContainer/MainContent/ButtonsContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
-[connection signal="pressed" from="CenterContainer/MainContent/ButtonsContainer/QuitGameButton" to="." method="_on_quit_game_button_pressed"]

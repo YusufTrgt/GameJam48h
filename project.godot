@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="GameJam 48Stunden"
-run/main_scene="uid://gmyigspeh7ma"
+run/main_scene="res://Scenes/UI/MainMenu.tscn"
 config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameManager="*res://Scripts/Core/GameManager.cs"
 
 [display]
 

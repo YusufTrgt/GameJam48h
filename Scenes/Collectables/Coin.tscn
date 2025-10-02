@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://p6p4ksofqsum"]
 
-[ext_resource type="Script" path="res://Scripts/MuenzeScripts/Muenze.cs" id="1_muenze"]
+[ext_resource type="Script" path="res://Scripts/Collectables/Coin.cs" id="1_muenze"]
 [ext_resource type="Texture2D" uid="uid://b8ja812jgvgyk" path="res://Assets/imageSprites/coin.png" id="2_coin"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2mms2"]
@@ -98,7 +98,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_8tgrn"]
 radius = 6.0
 
-[node name="Muenze" type="Area2D"]
+[node name="Coin" type="Area2D"]
 collision_layer = 4
 collision_mask = 1
 script = ExtResource("1_muenze")

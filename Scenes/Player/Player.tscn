@@ -1,6 +1,8 @@
-[gd_scene load_steps=34 format=3 uid="uid://phvg4nuchhnw"]
+[gd_scene load_steps=35 format=3 uid="uid://phvg4nuchhnw"]
 
-[ext_resource type="Script" uid="uid://cpr1owitltbgl" path="res://Scripts/Player Scripts/Player.cs" id="1_cvnsp"]
+[ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="1_player"]
+
+[ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://qnhv2k73ao62" path="res://Assets/Colour2/NoOutline/120x80_PNGSheets/_Idle.png" id="1_v0iea"]
 [ext_resource type="Texture2D" uid="uid://n7b165udxmv5" path="res://Assets/Colour2/NoOutline/120x80_PNGSheets/_Fall.png" id="2_fkybt"]
 [ext_resource type="Texture2D" uid="uid://cj2sc0lr8u3hw" path="res://Assets/Colour2/NoOutline/120x80_PNGSheets/_Run.png" id="3_6t5aa"]
@@ -217,6 +219,7 @@ height = 32.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(5, -20)
+script = ExtResource("1_player")
 script = ExtResource("1_cvnsp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
