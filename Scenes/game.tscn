@@ -1,5 +1,6 @@
-[gd_scene load_steps=98 format=3 uid="uid://ddbpsknfevufc"]
+[gd_scene load_steps=100 format=3 uid="uid://ddbpsknfevufc"]
 
+[ext_resource type="Script" uid="uid://cxmmjdi87jual" path="res://Scripts/Game/Game.cs" id="1_6xvgv"]
 [ext_resource type="Texture2D" uid="uid://dxagthltjumtj" path="res://Assets/UI/menu_background.png" id="1_bg"]
 [ext_resource type="PackedScene" uid="uid://phvg4nuchhnw" path="res://Scenes/player.tscn" id="1_ebmjs"]
 [ext_resource type="PackedScene" uid="uid://p6p4ksofqsum" path="res://Scenes/muenze.tscn" id="2_qxrlw"]
@@ -52,6 +53,7 @@
 [ext_resource type="Texture2D" uid="uid://bd1wq33xowide" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Tiles_rock/tile10.png" id="47_gsm33"]
 [ext_resource type="Texture2D" uid="uid://cimmiumb0ywsp" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Background/Pale/Background.png" id="51_jcvim"]
 [ext_resource type="AudioStream" uid="uid://b1f6soankvjl0" path="res://Assets/Sounds/Background/lfh - cleaned and equalized.wav" id="52_fnkle"]
+[ext_resource type="PackedScene" uid="uid://bms3n881t7lcm" path="res://Scenes/pause_menu.tscn" id="53_wr3wg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lrctp"]
 texture = ExtResource("8_32sfa")
@@ -1369,7 +1371,9 @@ sources/43 = SubResource("TileSetAtlasSource_x6jpx")
 sources/45 = SubResource("TileSetAtlasSource_sjh24")
 sources/46 = SubResource("TileSetAtlasSource_k5jl5")
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("pauseMenuLayer")]
+script = ExtResource("1_6xvgv")
+pauseMenuLayer = NodePath("PauseMenu")
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -100
@@ -1545,3 +1549,6 @@ texture = ExtResource("51_jcvim")
 stream = ExtResource("52_fnkle")
 volume_db = -16.0
 autoplay = true
+
+[node name="PauseMenu" parent="." instance=ExtResource("53_wr3wg")]
+layer = 14

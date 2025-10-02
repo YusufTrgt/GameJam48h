@@ -56,12 +56,29 @@ public partial class Player : CharacterBody2D
 
 	// Air Input Lock
 	private float airInputAxis = 0;
+	
+	// Respawn
+	private Vector2 _startPos;
+	[Export] public Marker2D SpawnPoint; // im Inspector mit Marker2D belegen
+	
+	// Y-Threshhold
+	[Export] public float DeathY = 600f;         // If player falls below this Y, respawn
 
-	public override void _Ready()
-	{
+	public override void _Ready(){
 		sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		currentStamina = MaxStamina;
 		currentHealth = MaxHealth;
+		
+		_startPos = GlobalPosition;
+		
+		if (SpawnPoint == null){
+			GD.PushWarning("SpawnPoint ist nicht zugewiesen! Zieh im Inspector einen Marker2D in das Feld.");
+		}
+	
+		else{
+			// Optional: Start am Spawn
+			GlobalPosition = SpawnPoint.GlobalPosition;
+		}
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -225,10 +242,16 @@ public partial class Player : CharacterBody2D
 		{
 			velocity.X = Mathf.MoveToward(velocity.X, 0, Friction * deltaF);
 		}
-
+		
+		if (GlobalPosition.Y > DeathY){
+			Die();
+			return;
+		}
+		
 		UpdateAnimation(velocity);
 
 		Velocity = velocity;
+		
 		MoveAndSlide();
 	}
 	
@@ -299,9 +322,32 @@ public partial class Player : CharacterBody2D
 		if (currentHealth > MaxHealth)
 			currentHealth = MaxHealth;
 	}
+		
+	private void Respawn() {
+		Velocity = Vector2.Zero;
+
+		Vector2 targetPos = (SpawnPoint != null) ? SpawnPoint.GlobalPosition : _startPos;
+
+		// Safety: make sure we don't respawn below DeathY
+		if (targetPos.Y > DeathY - 10f) targetPos.Y = DeathY - 10f;
+
+		GlobalPosition = targetPos;
+
+		currentHealth = MaxHealth;
+		currentStamina = MaxStamina;
+		hasDoubleJump = true;
+		jumpStaminaPaid = false;
+		
+		//Debug
+		GD.Print($"Respawned at: {GlobalPosition}");
+	}
+
+	
+	
 	
 	private void Die()
 	{
 		GD.Print("Player ist gestorben!");
+		CallDeferred(nameof(Respawn));
 	}
 }

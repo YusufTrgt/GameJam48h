@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=3 uid="uid://bms3n881t7lcm"]
+
+[ext_resource type="FontFile" uid="uid://da8xbn27w3kp5" path="res://Fonts/Cinzel-VariableFont_wght.ttf" id="2_1och7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpi0q"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vmyb1"]
+bg_color = Color(0.39688924, 0.39688927, 0.3968891, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_myy0f"]
+bg_color = Color(0.69965345, 0.6996535, 0.6996533, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+shadow_offset = Vector2(1, -2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sjs17"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u8tnp"]
+bg_color = Color(0.9852814, 0.9852814, 0.9852814, 1)
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_stj27"]
+bg_color = Color(0.8966985, 0.4367778, 0.40764803, 1)
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ix48p"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+
+[node name="Control" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -52.5
+offset_right = 200.0
+offset_bottom = 52.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainContent" type="VBoxContainer" parent="Control/CenterContainer"]
+process_mode = 3
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="Control/CenterContainer/MainContent"]
+process_mode = 3
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="ResumeButton" type="Button" parent="Control/CenterContainer/MainContent/ButtonsContainer"]
+process_mode = 3
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+tooltip_text = "Rette die Welt !"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_1och7")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_bpi0q")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vmyb1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_myy0f")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sjs17")
+text = "Resume"
+
+[node name="QuitButton" type="Button" parent="Control/CenterContainer/MainContent/ButtonsContainer"]
+process_mode = 3
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+tooltip_text = "Schliesse das Spiel"
+theme_override_colors/font_color = Color(0.08855977, 0.08855999, 0.088559784, 1)
+theme_override_fonts/font = ExtResource("2_1och7")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_u8tnp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_stj27")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ix48p")
+text = "Quit"
+
+[connection signal="pressed" from="Control/CenterContainer/MainContent/ButtonsContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Control/CenterContainer/MainContent/ButtonsContainer/QuitButton" to="." method="_on_quit_button_pressed"]
