@@ -23,7 +23,6 @@ public partial class PlayerCamera : Camera2D
 
 		Vector2 newPosition = target.GlobalPosition + offset;
 
-		// Limtiert die Kamera in der Y Achse
 		if (newPosition.Y > startY + maxFallDistance)
 		{
 			newPosition.Y = startY + maxFallDistance;
