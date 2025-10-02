@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://ddbpsknfevufc"]
+[gd_scene load_steps=104 format=3 uid="uid://ddbpsknfevufc"]
 
 [ext_resource type="Script" uid="uid://cxmmjdi87jual" path="res://Scripts/Managers/GameManager.cs" id="1_6xvgv"]
 [ext_resource type="Texture2D" uid="uid://6c2d0xmy23ak" path="res://Assets/UI/menu_background.png" id="1_bg"]
@@ -55,6 +55,8 @@
 [ext_resource type="AudioStream" uid="uid://b1f6soankvjl0" path="res://Assets/Sounds/Background/lfh - cleaned and equalized.wav" id="52_fnkle"]
 [ext_resource type="PackedScene" uid="uid://bms3n881t7lcm" path="res://Scenes/UI/PauseMenu.tscn" id="53_wr3wg"]
 [ext_resource type="PackedScene" uid="uid://dn3wlcf47a4u8" path="res://Scenes/UI/DeathScreen.tscn" id="55_cps3b"]
+[ext_resource type="Script" uid="uid://dkw17bd7u8yoa" path="res://Scripts/Core/GateTrigger.cs" id="56_2u5di"]
+[ext_resource type="PackedScene" uid="uid://bif60efajs8pa" path="res://Scenes/UI/DialogueBox.tscn" id="57_kbyxb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lrctp"]
 texture = ExtResource("8_32sfa")
@@ -1372,6 +1374,10 @@ sources/43 = SubResource("TileSetAtlasSource_x6jpx")
 sources/45 = SubResource("TileSetAtlasSource_sjh24")
 sources/46 = SubResource("TileSetAtlasSource_k5jl5")
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cps3b"]
+radius = 19.75
+height = 78.52
+
 [node name="Game" type="Node2D" node_paths=PackedStringArray("pauseMenu")]
 script = ExtResource("1_6xvgv")
 pauseMenu = NodePath("PauseMenu")
@@ -1383,6 +1389,7 @@ scale = Vector2(0.25000003, 0.2109375)
 texture = ExtResource("1_bg")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_ebmjs")]
+z_index = 1
 position = Vector2(-20, 98)
 scale = Vector2(0.5, 0.5)
 
@@ -1555,3 +1562,11 @@ autoplay = true
 layer = 14
 
 [node name="DeathScreen" parent="." instance=ExtResource("55_cps3b")]
+
+[node name="Gate" type="Area2D" parent="."]
+script = ExtResource("56_2u5di")
+dialogBoxScene = ExtResource("57_kbyxb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gate"]
+position = Vector2(1393, 46)
+shape = SubResource("CapsuleShape2D_cps3b")
