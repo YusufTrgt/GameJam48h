@@ -1,10 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://gmyigspeh7ma"]
+[gd_scene load_steps=13 format=3 uid="uid://gmyigspeh7ma"]
 
-[ext_resource type="Script" uid="uid://dhq2m2wol7y6k" path="res://Scripts/UserInterface Scripts/MainMenuManager.cs" id="1_ghw46"]
-[ext_resource type="FontFile" uid="uid://da8xbn27w3kp5" path="res://Fonts/Cinzel-VariableFont_wght.ttf" id="1_tt5f1"]
-[ext_resource type="FontFile" uid="uid://ckdb7k1yo05k" path="res://Fonts/CinzelDecorative-Bold.ttf" id="2_8saeu"]
-[ext_resource type="FontFile" uid="uid://cuqyp32a1lc4w" path="res://Fonts/CinzelDecorative-Regular.ttf" id="3_ghw46"]
-[ext_resource type="Texture2D" path="res://Assets/UI/menu_background.png" id="4_bg"]
+[ext_resource type="Script" uid="uid://dhq2m2wol7y6k" path="res://Scripts/UI/MainMenuManager.cs" id="1_ghw46"]
+[ext_resource type="FontFile" uid="uid://qpcslfq4n6ad" path="res://Fonts/Cinzel-VariableFont_wght.ttf" id="1_tt5f1"]
+[ext_resource type="FontFile" uid="uid://boci1hrf81bes" path="res://Fonts/CinzelDecorative-Bold.ttf" id="2_8saeu"]
+[ext_resource type="FontFile" uid="uid://dqc400vjebbti" path="res://Fonts/CinzelDecorative-Regular.ttf" id="3_ghw46"]
+[ext_resource type="Texture2D" uid="uid://bq7k2eqqoes3t" path="res://Assets/Background/menu_background.png" id="4_bg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_853f1"]
 bg_color = Color(1, 1, 1, 1)

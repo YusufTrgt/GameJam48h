@@ -3,3 +3,16 @@
 /android/
 .import/
 *.import
+
+# C# / .NET specific
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.csproj.user
+*.DotSettings.user
+
+# Rider
+.idea/
+*.sln.iml

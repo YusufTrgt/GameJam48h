@@ -1,9 +1,5 @@
 [gd_scene load_steps=15 format=3 uid="uid://phvg4nuchhnw"]
 
-<<<<<<< Updated upstream:Scenes/player.tscn
-[ext_resource type="Script" uid="uid://cpr1owitltbgl" path="res://Scripts/Player Scripts/Player.cs" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://g5jxv45vc3lq" path="res://Assets/Colour2/NoOutline/120x80_PNGSheets/_Idle.png" id="1_v0iea"]
-=======
 [ext_resource type="Script" uid="uid://cpr1owitltbgl" path="res://Scripts/Player/Player.cs" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://byt421bplwe6u" path="res://Assets/Colour2/NoOutline/120x80_PNGSheets/_Idle.png" id="1_v0iea"]
 [ext_resource type="Texture2D" uid="uid://cbgva856k8age" path="res://Assets/Colour2/NoOutline/120x80_PNGSheets/_Fall.png" id="2_fkybt"]
@@ -21,7 +17,6 @@ region = Rect2(120, 40, 120, 40)
 [sub_resource type="AtlasTexture" id="AtlasTexture_bi64h"]
 atlas = ExtResource("2_fkybt")
 region = Rect2(240, 40, 120, 40)
->>>>>>> Stashed changes:Scenes/Player/player.tscn
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v0iea"]
 atlas = ExtResource("1_v0iea")

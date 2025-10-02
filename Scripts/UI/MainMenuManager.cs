@@ -1,9 +1,4 @@
 using Godot;
-using System;
-
-// folgende klasse ist zustaendig fuer die interaktion mit den 
-// Buttons im Hauptmenu : einfachhaltshalber wird direkt hier auch die 
-// Logik implementiert
 
 public partial class MainMenuManager : Node
 {
@@ -16,15 +11,13 @@ public partial class MainMenuManager : Node
 		quitButton.Pressed += OnQuitButtonPressed;
 	}
 
-	// schliesst die applikation
 	private void OnQuitButtonPressed()
 	{
 	   GetTree().Quit();
 	}
 
-	// oeffnet das erste level
 	private void OnStartButtonPressed()
 	{
-		GetTree().ChangeSceneToFile("res://Scenes/game.tscn");
+		GetTree().ChangeSceneToFile("res://Scenes/Levels/Game.tscn");
 	}
 }
