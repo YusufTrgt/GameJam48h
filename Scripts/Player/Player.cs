@@ -17,7 +17,7 @@ public partial class Player : CharacterBody2D
 	[Export] public float IdleStaminaRegenRate = 60.0f;
 	[Export] public float IdleRegenDelay = 0.5f;
 	[Export] public float MinStaminaToSprint = 5.0f;
-	[Export] public float JumpStaminaCost = 25.0f;
+	[Export] public float MaxJumpStaminaCost = 25.0f;
 	[Export] public float MinJumpStaminaCost = 10.0f;
 
 	[ExportGroup("Health")]
@@ -42,17 +42,17 @@ public partial class Player : CharacterBody2D
 	private float jumpBufferTimer;
 	private float idleTimer;
 	private bool hasDoubleJump;
-	private bool jumpStaminaPaid;
 	private bool canSprint = true;
 	private bool sprintInputReleased = true;
 	private bool facingRight = true;
 	private bool isDead = false;
 	private string currentAnimation = "";
 	private Vector2 startPosition;
+	private float jumpStartVelocity = 0f;
 
 	public override void _Ready()
 	{
-		sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		sprite = GetNodeOrNull<AnimatedSprite2D>("AnimatedSprite2D");
 		currentStamina = MaxStamina;
 		currentHealth = MaxHealth;
 		startPosition = GlobalPosition;
@@ -92,7 +92,7 @@ public partial class Player : CharacterBody2D
 		{
 			coyoteTimer = CoyoteTime;
 			hasDoubleJump = true;
-			jumpStaminaPaid = false;
+			jumpStartVelocity = 0f;
 		}
 	}
 
@@ -113,32 +113,38 @@ public partial class Player : CharacterBody2D
 			if (coyoteTimer > 0 && currentStamina >= MinJumpStaminaCost)
 			{
 				velocity.Y = JumpVelocity;
-				jumpStaminaPaid = false;
+				jumpStartVelocity = JumpVelocity;
 				jumpBufferTimer = 0;
 				coyoteTimer = 0;
 			}
 			else if (CanDoubleJump && hasDoubleJump && !IsOnFloor() && currentStamina >= MinJumpStaminaCost)
 			{
 				velocity.Y = JumpVelocity;
-				jumpStaminaPaid = false;
+				jumpStartVelocity = JumpVelocity;
 				hasDoubleJump = false;
 				jumpBufferTimer = 0;
 			}
 		}
 
-		if (Input.IsActionJustReleased("jump") && velocity.Y < 0 && !jumpStaminaPaid)
+		if (Input.IsActionJustReleased("jump") && velocity.Y < 0 && jumpStartVelocity != 0f)
 		{
-			float jumpProgress = 1.0f - (velocity.Y / JumpVelocity);
+			float jumpProgress = 1.0f - (velocity.Y / jumpStartVelocity);
 			jumpProgress = Mathf.Clamp(jumpProgress, 0.0f, 1.0f);
-			float staminaCost = Mathf.Lerp(MinJumpStaminaCost, JumpStaminaCost, jumpProgress);
+			
+			float staminaCost = Mathf.Lerp(MaxJumpStaminaCost, MinJumpStaminaCost, jumpProgress);
 			currentStamina -= staminaCost;
-			jumpStaminaPaid = true;
+			
+			jumpStartVelocity = 0f;
 			velocity.Y *= 0.5f;
+			
+			GD.Print($"Jump released early! Progress: {jumpProgress:F2}, Cost: {staminaCost:F1}");
 		}
-		else if (velocity.Y >= 0 && !jumpStaminaPaid && !IsOnFloor())
+		else if (velocity.Y >= 0 && jumpStartVelocity != 0f && !IsOnFloor())
 		{
-			currentStamina -= JumpStaminaCost;
-			jumpStaminaPaid = true;
+			currentStamina -= MinJumpStaminaCost;
+			jumpStartVelocity = 0f;
+			
+			GD.Print($"Full jump completed! Cost: {MinJumpStaminaCost}");
 		}
 	}
 
@@ -169,12 +175,12 @@ public partial class Player : CharacterBody2D
 			if (inputAxis > 0 && !facingRight)
 			{
 				facingRight = true;
-				sprite.FlipH = false;
+				if (sprite != null) sprite.FlipH = false;
 			}
 			else if (inputAxis < 0 && facingRight)
 			{
 				facingRight = false;
-				sprite.FlipH = true;
+				if (sprite != null) sprite.FlipH = true;
 			}
 		}
 		else
@@ -241,6 +247,8 @@ public partial class Player : CharacterBody2D
 
 	private void UpdateAnimation(Vector2 velocity)
 	{
+		if (sprite == null) return;
+
 		if (!IsOnFloor())
 		{
 			if (velocity.Y < -5f)
@@ -269,6 +277,7 @@ public partial class Player : CharacterBody2D
 
 	private void PlayAnimation(string animName, float speedScale = 1f)
 	{
+		if (sprite == null) return;
 		if (currentAnimation == animName && Mathf.Abs(sprite.SpeedScale - speedScale) < 0.01f)
 		{
 			return;
@@ -299,7 +308,7 @@ public partial class Player : CharacterBody2D
 		currentHealth = MaxHealth;
 		currentStamina = MaxStamina;
 		hasDoubleJump = true;
-		jumpStaminaPaid = false;
+		jumpStartVelocity = 0f;
 		isDead = false;
 	}
 
@@ -317,9 +326,7 @@ public partial class Player : CharacterBody2D
 	{
 		currentHealth += amount;
 		if (currentHealth > MaxHealth)
-		{
 			currentHealth = MaxHealth;
-		}
 	}
 
 	public float GetStaminaPercent() => currentStamina / MaxStamina;
