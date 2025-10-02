@@ -1,10 +1,10 @@
 [gd_scene load_steps=34 format=3 uid="uid://phvg4nuchhnw"]
 
 [ext_resource type="Script" uid="uid://cpr1owitltbgl" path="res://Scripts/Player Scripts/Player.cs" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://g5jxv45vc3lq" path="res://Assets/Colour2/NoOutline/120x80_PNGSheets/_Idle.png" id="1_v0iea"]
-[ext_resource type="Texture2D" uid="uid://6iio1uu4m760" path="res://Assets/Colour2/NoOutline/120x80_PNGSheets/_Fall.png" id="2_fkybt"]
-[ext_resource type="Texture2D" uid="uid://cs6cmdwk4453y" path="res://Assets/Colour2/NoOutline/120x80_PNGSheets/_Run.png" id="3_6t5aa"]
-[ext_resource type="Texture2D" uid="uid://tky3bugae5qw" path="res://Assets/Colour2/NoOutline/120x80_PNGSheets/_Jump.png" id="4_x3wgy"]
+[ext_resource type="Texture2D" uid="uid://qnhv2k73ao62" path="res://Assets/Colour2/NoOutline/120x80_PNGSheets/_Idle.png" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://n7b165udxmv5" path="res://Assets/Colour2/NoOutline/120x80_PNGSheets/_Fall.png" id="2_fkybt"]
+[ext_resource type="Texture2D" uid="uid://cj2sc0lr8u3hw" path="res://Assets/Colour2/NoOutline/120x80_PNGSheets/_Run.png" id="3_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://b54g5mqs3jq56" path="res://Assets/Colour2/NoOutline/120x80_PNGSheets/_Jump.png" id="4_x3wgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_olqyp"]
 atlas = ExtResource("2_fkybt")

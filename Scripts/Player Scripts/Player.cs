@@ -11,6 +11,12 @@ public partial class Player : CharacterBody2D
 	[Export] public float Friction = 1200.0f;
 	[Export] public float GravityMul = 0.7f;
 	
+	// Idle-Regeneration
+	[Export] public float IdleRegenDelay = 0.5f;     
+	[Export] public float IdleRegenRate = 60.0f;    
+	[Export] public float IdleStopSpeed = 5.0f;      
+	private float idleTimer = 0.0f;
+
 	// Health System
 	[Export] public float MaxHealth = 100.0f;
 	private float currentHealth;
@@ -145,17 +151,35 @@ public partial class Player : CharacterBody2D
 			inputAxis = airInputAxis;
 		}
 
-		// Sprint mit Shift & Stamina System
+		// --- IDLE-ERKENNUNG ---
+		bool grounded = IsOnFloor();
+		bool noHorizontalInput = Mathf.IsZeroApprox(inputAxis);
+		bool horizontallyStopped = Mathf.Abs(velocity.X) <= IdleStopSpeed;
+		bool sprintHeld = Input.IsActionPressed("sprint");
+
+		// "Idle" heißt: am Boden, kein Input, fast keine Bewegung, nicht sprinten
+		bool isIdle = grounded && noHorizontalInput && horizontallyStopped && !sprintHeld;
+
+		if (isIdle)
+			idleTimer += deltaF;
+		else
+			idleTimer = 0f;
+
+		// --- SPRINT & STAMINA ---
 		float currentSpeed = Speed;
+
+		// Sprint-Input-Entprellung
 		if (!Input.IsActionPressed("sprint"))
 		{
 			sprintInputReleased = true;
 		}
+
 		if (Input.IsActionPressed("sprint") && canSprint && sprintInputReleased && inputAxis != 0)
 		{
+			// Sprint aktiv: drain
 			currentSpeed = SprintSpeed;
 			currentStamina -= StaminaDrainRate * deltaF;
-			
+
 			if (currentStamina <= 0)
 			{
 				currentStamina = 0;
@@ -165,10 +189,18 @@ public partial class Player : CharacterBody2D
 		}
 		else
 		{
-			currentStamina += StaminaRegenRate * deltaF;
+			// Regeneration:
+			// Normale Regeneration immer – aber wenn 0.5s idle, dann Boost ("schießt hoch")
+			float regen = StaminaRegenRate;
+
+			if (idleTimer >= IdleRegenDelay)
+				regen = IdleRegenRate;
+
+			currentStamina += regen * deltaF;
+
 			if (currentStamina > MaxStamina)
 				currentStamina = MaxStamina;
-			
+
 			if (currentStamina >= MinStaminaToSprint)
 				canSprint = true;
 		}
@@ -231,7 +263,6 @@ public partial class Player : CharacterBody2D
 		}
 	}
 
-	
 	public float GetStaminaPercent()
 	{
 		return currentStamina / MaxStamina;
@@ -272,6 +303,5 @@ public partial class Player : CharacterBody2D
 	private void Die()
 	{
 		GD.Print("Player ist gestorben!");
-		// TODO: Game Over Screen, Respawn, etc.
 	}
 }
