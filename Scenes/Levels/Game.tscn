@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://ddbpsknfevufc"]
 
-[ext_resource type="Texture2D" uid="uid://bq7k2eqqoes3t" path="res://Assets/Background/menu_background.png" id="1_bg"]
+[ext_resource type="Texture2D" uid="uid://cullyr8r7v2o6" path="res://Assets/Background/menu_background.png" id="1_bg"]
 [ext_resource type="PackedScene" uid="uid://phvg4nuchhnw" path="res://Scenes/Player/Player.tscn" id="1_ebmjs"]
 [ext_resource type="PackedScene" uid="uid://p6p4ksofqsum" path="res://Scenes/Collectibles/Coin.tscn" id="2_qxrlw"]
 [ext_resource type="Script" uid="uid://ba8mjqayycu8j" path="res://Scripts/UI/PlayerUI.cs" id="3_ui"]
-[ext_resource type="Script" uid="uid://d32jf4pffhqm0" path="res://Scripts/ComponentScripts/FollowCameraComponent.cs" id="4_3dryh"]
+[ext_resource type="Script" uid="uid://d32jf4pffhqm0" path="res://Scripts/Components/FollowCameraComponent.cs" id="4_3dryh"]
 [ext_resource type="FontFile" uid="uid://dqc400vjebbti" path="res://Fonts/CinzelDecorative-Regular.ttf" id="6_1l0tm"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ebmjs"]

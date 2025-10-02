@@ -32,7 +32,7 @@ public partial class PlayerUI : CanvasLayer
 		player = GetTree().GetFirstNodeInGroup("player") as Player;
 		if (player == null)
 		{
-			GD.PrintErr("Player not found!");
+			GD.PrintErr("[PlayerUI] Player not found in group 'player'!");
 		}
 	}
 	
@@ -101,17 +101,25 @@ public partial class PlayerUI : CanvasLayer
 	
 	private void SetupCoinSprite()
 	{
-		var coinSprite = GetNode<AnimatedSprite2D>("PlayerStatsVBox/Coin_ScoreContainer/HeightAdjustment__ScoreToCoinAmount/CoinContainer/CoinSprite");
-		var spriteFrames = GD.Load<SpriteFrames>("res://Assets/UI/coin_animation.tres");
+		var coinSprite = GetNodeOrNull<AnimatedSprite2D>("PlayerStatsVBox/Coin_ScoreContainer/HeightAdjustment__ScoreToCoinAmount/CoinContainer/CoinSprite");
+		
+		if (coinSprite == null)
+		{
+			GD.Print("[PlayerUI] CoinSprite node not found - coin UI will not display");
+			return;
+		}
+		
+		var spriteFrames = GD.Load<SpriteFrames>("res://Assets/UI/ui_coin_sprite.tres");
 		
 		if (spriteFrames != null)
 		{
 			coinSprite.SpriteFrames = spriteFrames;
-			coinSprite.Play("default");
+			coinSprite.Play("coin");
+			GD.Print("[PlayerUI] Coin sprite loaded successfully");
 		}
 		else
 		{
-			GD.PrintErr("Coin SpriteFrames not found.");
+			GD.PrintErr("[PlayerUI] ui_coin_sprite.tres not found at: res://Assets/UI/ui_coin_sprite.tres");
 		}
 	}
 	

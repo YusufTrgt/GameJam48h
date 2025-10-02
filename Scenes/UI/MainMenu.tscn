@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://qpcslfq4n6ad" path="res://Fonts/Cinzel-VariableFont_wght.ttf" id="1_tt5f1"]
 [ext_resource type="FontFile" uid="uid://boci1hrf81bes" path="res://Fonts/CinzelDecorative-Bold.ttf" id="2_8saeu"]
 [ext_resource type="FontFile" uid="uid://dqc400vjebbti" path="res://Fonts/CinzelDecorative-Regular.ttf" id="3_ghw46"]
-[ext_resource type="Texture2D" uid="uid://bq7k2eqqoes3t" path="res://Assets/Background/menu_background.png" id="4_bg"]
+[ext_resource type="Texture2D" uid="uid://cullyr8r7v2o6" path="res://Assets/Background/menu_background.png" id="4_bg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_853f1"]
 bg_color = Color(1, 1, 1, 1)
