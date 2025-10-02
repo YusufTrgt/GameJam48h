@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://b2o1vfk5x04r"]
+
+[ext_resource type="Texture2D" uid="uid://ctotyle4oocg8" path="res://Assets/imageSprites/coin.png" id="1_hy8sp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r86jp"]
+atlas = ExtResource("1_hy8sp")
+region = Rect2(0, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r86jp")
+}],
+"loop": true,
+"name": &"coin",
+"speed": 5.0
+}]

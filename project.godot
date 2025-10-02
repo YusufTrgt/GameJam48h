@@ -15,6 +15,21 @@ run/main_scene="uid://gmyigspeh7ma"
 config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
+<<<<<<< Updated upstream
+=======
+[autoload]
+
+GameManager="*res://Scripts/Systems/GameManager.cs"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=3
+window/size/resizable=false
+window/stretch/mode="viewport"
+
+>>>>>>> Stashed changes
 [dotnet]
 
 project/assembly_name="GameJam 48Stunden"
