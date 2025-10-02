@@ -136,15 +136,11 @@ public partial class Player : CharacterBody2D
 			
 			jumpStartVelocity = 0f;
 			velocity.Y *= 0.5f;
-			
-			GD.Print($"Jump released early! Progress: {jumpProgress:F2}, Cost: {staminaCost:F1}");
 		}
 		else if (velocity.Y >= 0 && jumpStartVelocity != 0f && !IsOnFloor())
 		{
 			currentStamina -= MinJumpStaminaCost;
 			jumpStartVelocity = 0f;
-			
-			GD.Print($"Full jump completed! Cost: {MinJumpStaminaCost}");
 		}
 	}
 
@@ -155,7 +151,6 @@ public partial class Player : CharacterBody2D
 		if (Input.IsActionPressed("move_left")) inputAxis -= 1;
 
 		float targetSpeed = Speed;
-		bool isSprinting = false;
 
 		if (!Input.IsActionPressed("sprint"))
 		{
@@ -165,7 +160,6 @@ public partial class Player : CharacterBody2D
 		if (Input.IsActionPressed("sprint") && canSprint && sprintInputReleased && inputAxis != 0 && IsOnFloor())
 		{
 			targetSpeed = SprintSpeed;
-			isSprinting = true;
 		}
 
 		if (inputAxis != 0)
@@ -241,8 +235,73 @@ public partial class Player : CharacterBody2D
 	{
 		if (GlobalPosition.Y > GameConstants.DEATH_Y && !isDead)
 		{
-			Die();
+			FallDeath();
 		}
+	}
+
+	private void FallDeath()
+	{
+		isDead = true;
+		
+		TakeDamage(GameConstants.HEALTH_PER_HEART);
+		
+		if (currentHealth > 0)
+		{
+			CallDeferred(nameof(Respawn));
+		}
+	}
+
+	public void TakeDamage(float damage)
+	{
+		if (currentHealth <= 0) return;
+		
+		currentHealth -= damage;
+		
+		GD.Print($"Player took {damage} damage! Health: {currentHealth}/{MaxHealth}");
+		
+		if (currentHealth <= 0)
+		{
+			currentHealth = 0;
+			ShowDeathScreen();
+		}
+	}
+
+	private void ShowDeathScreen()
+	{
+		GD.Print("All hearts lost! Showing death screen...");
+		
+		GetTree().Paused = true;
+		
+		var deathScreen = GetTree().Root.GetNodeOrNull<CanvasLayer>("Game/DeathScreen");
+		if (deathScreen != null)
+		{
+			deathScreen.Show();
+		}
+		else
+		{
+			GD.PrintErr("DeathScreen not found!");
+		}
+	}
+
+	private void Respawn()
+	{
+		Vector2 targetPos = (SpawnPoint != null) ? SpawnPoint.GlobalPosition : startPosition;
+
+		if (targetPos.Y > GameConstants.DEATH_Y - 10f)
+		{
+			targetPos.Y = GameConstants.DEATH_Y - 10f;
+		}
+
+		GlobalPosition = targetPos;
+		Velocity = Vector2.Zero;
+		currentStamina = MaxStamina;
+		hasDoubleJump = true;
+		jumpStartVelocity = 0f;
+		
+		isDead = false;
+		
+		int heartsLeft = Mathf.CeilToInt(currentHealth / GameConstants.HEALTH_PER_HEART);
+		GD.Print($"Player respawned at: {GlobalPosition}, Hearts left: {heartsLeft}");
 	}
 
 	private void UpdateAnimation(Vector2 velocity)
@@ -286,40 +345,6 @@ public partial class Player : CharacterBody2D
 		sprite.SpeedScale = speedScale;
 		sprite.Play(animName);
 		currentAnimation = animName;
-	}
-
-	private void Die()
-	{
-		isDead = true;
-		CallDeferred(nameof(Respawn));
-	}
-
-	private void Respawn()
-	{
-		Velocity = Vector2.Zero;
-		Vector2 targetPos = (SpawnPoint != null) ? SpawnPoint.GlobalPosition : startPosition;
-
-		if (targetPos.Y > GameConstants.DEATH_Y - 10f)
-		{
-			targetPos.Y = GameConstants.DEATH_Y - 10f;
-		}
-
-		GlobalPosition = targetPos;
-		currentHealth = MaxHealth;
-		currentStamina = MaxStamina;
-		hasDoubleJump = true;
-		jumpStartVelocity = 0f;
-		isDead = false;
-	}
-
-	public void TakeDamage(float damage)
-	{
-		currentHealth -= damage;
-		if (currentHealth <= 0)
-		{
-			currentHealth = 0;
-			Die();
-		}
 	}
 
 	public void Heal(float amount)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://ddbpsknfevufc"]
+[gd_scene load_steps=101 format=3 uid="uid://ddbpsknfevufc"]
 
 [ext_resource type="Script" uid="uid://cxmmjdi87jual" path="res://Scripts/Managers/GameManager.cs" id="1_6xvgv"]
 [ext_resource type="Texture2D" uid="uid://6c2d0xmy23ak" path="res://Assets/UI/menu_background.png" id="1_bg"]
@@ -54,6 +54,7 @@
 [ext_resource type="Texture2D" uid="uid://spoo5n4vrul3" path="res://Assets/craftpix-785611-free-dungeon-platformer-pixel-art-tileset/PNG/Background/Pale/Background.png" id="51_jcvim"]
 [ext_resource type="AudioStream" uid="uid://b1f6soankvjl0" path="res://Assets/Sounds/Background/lfh - cleaned and equalized.wav" id="52_fnkle"]
 [ext_resource type="PackedScene" uid="uid://bms3n881t7lcm" path="res://Scenes/UI/PauseMenu.tscn" id="53_wr3wg"]
+[ext_resource type="PackedScene" uid="uid://dn3wlcf47a4u8" path="res://Scenes/UI/DeathScreen.tscn" id="55_cps3b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lrctp"]
 texture = ExtResource("8_32sfa")
@@ -1551,3 +1552,5 @@ autoplay = true
 
 [node name="PauseMenu" parent="." instance=ExtResource("53_wr3wg")]
 layer = 14
+
+[node name="DeathScreen" parent="." instance=ExtResource("55_cps3b")]
